@@ -2,7 +2,6 @@ package it.progetto.Progetto_Esame.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import it.progetto.Progetto_Esame.service.RecordService;
 
@@ -11,7 +10,7 @@ public class Controller {
 	@Autowired
 	RecordService record;
 	
-	
+	//@RequestMapping
 	
 	
 }
