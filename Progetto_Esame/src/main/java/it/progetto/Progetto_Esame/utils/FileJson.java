@@ -5,21 +5,8 @@ import java.io.IOException;
 
 import org.json.simple.JSONArray;
 
-public class Utilità {
-	public static String rimuoviTag(String stringa) {
-		String ris = "";
-		boolean ok = false;
-		for (char c: stringa.toCharArray()) {
-			if (c == '<' && ok)
-				break;
-			
-			if (ok)
-				ris += c;
-			
-			if (c == '>')
-				ok = true;
-		}
-		return ris;
+public class FileJson {
+	public FileJson(){
 	}
 	
 	public static void newJSON(JSONArray json) {

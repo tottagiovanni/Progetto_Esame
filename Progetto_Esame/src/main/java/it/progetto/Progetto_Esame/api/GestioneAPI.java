@@ -30,13 +30,13 @@ public class GestioneAPI {
 			
 			JSONObject json = (JSONObject) JSONValue.parse(data);
 			
-			JSONArray jobj = (JSONArray) json.get("statuses");
+			JSONArray jarr = (JSONArray) json.get("statuses");
 			
 			
 			JSONArray nuovo = new JSONArray();
-			for (Object o: jobj) {
+			for (Object o: jarr) {
 				JSONObject j = new JSONObject();
-				//JSONObject o = (JSONObject)jobj.get(i);
+				//JSONObject o = (JSONObject)jarr.get(i);
 				j.put("Id_post", (((JSONObject) o).get("id_str")));
 	          
 	            j.put("Name", ((JSONObject) (((JSONObject) o).get("user"))).get("name"));
@@ -51,13 +51,13 @@ public class GestioneAPI {
 	            j.put("Retweet", (((JSONObject) o).get("retweet_count")));
 	           
 	            j.put("Text", (((JSONObject) o).get("text")));
-	            String device = Utilità.rimuoviTag((String) (((JSONObject) o).get("source")));
+	            String device = RimuoviTag.rimuovi((String) (((JSONObject) o).get("source")));
 	            j.put("Device", device);
 	            
 	            nuovo.add(j);
 			}
 			
-			Utilità.newJSON(nuovo);
+			FileJson.newJSON(nuovo);
 		}
 		catch(MalformedURLException e) {
 			e.printStackTrace();
