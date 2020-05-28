@@ -10,6 +10,6 @@ import it.progetto.Progetto_Esame.model.RecordTwitter;
 @Service
 public class JSONServiceImpl implements JSONService{
 	public ArrayList<RecordTwitter> getAllTweets() {
-		return DataService.getTweets();
+		return RecordService.getTweets();
 	}
 }

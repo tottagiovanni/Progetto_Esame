@@ -4,21 +4,14 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-import org.json.simple.*;
-
-import it.progetto.Progetto_Esame.model.RecordTwitter;
 import it.progetto.Progetto_Esame.utils.PersistenceJSON;
-import it.progetto.Progetto_Esame.utils.RimuoviTag;
 
 
 public class DataService {
-	private static ArrayList<RecordTwitter> tweets= new ArrayList<>();
-	
-	
 	public DataService() {
 	}
 	
-	public static void setTweets(URL query){
+	public static String setTweets(URL query){
 	    URLConnection yc = null;
 		try {
 			yc = query.openConnection();
@@ -45,31 +38,23 @@ public class DataService {
 		}
 	    
 	    PersistenceJSON.writeJSONFile(data);
-        
-        JSONObject json = (JSONObject) JSONValue.parse(data);       
-        JSONArray jsonArray = (JSONArray) json.get("statuses");
-        
-
-        for(Object o : jsonArray) {
-        	RecordTwitter tweet = new RecordTwitter();
-        	tweet.setId_post((String)((JSONObject) o).get("id_str"));
-            tweet.setName((String)((JSONObject) (((JSONObject) o).get("user"))).get("name"));
-            tweet.setNation((String)((JSONObject) o).get("lang"));
-            tweet.setFollowers((Long)((JSONObject) (((JSONObject) o).get("user"))).get("followers_count"));
-            tweet.setLike((Long)((JSONObject) o).get("favorite_count"));
-            tweet.setRetweet((Long)((JSONObject) o).get("retweet_count"));
-            tweet.setText((String)((JSONObject) o).get("text"));
-            tweet.setDevice(RimuoviTag.rimuovi((String) (((JSONObject) o).get("source"))));
-            tweets.add(tweet);
-       }
+	    return data;
 	}  
 	
-	public static void setLocalTweets(){
-		
+	public static String setLocalTweets() {
+		String data = "";
+		try {
+			Scanner reader = new Scanner(new File("ultima_ricerca.json"));
+			while (reader.hasNextLine()) {
+				 data = reader.nextLine();
+				System.out.println(data);
+			}
+			reader.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Errore nel caricamento del file!");
+			e.printStackTrace();
+		}
+		return data;
 	}
 	
-	
-	public static ArrayList<RecordTwitter> getTweets() {
-		return tweets;
-	}
 }
