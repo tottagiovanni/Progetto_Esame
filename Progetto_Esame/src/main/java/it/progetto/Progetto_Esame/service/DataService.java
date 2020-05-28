@@ -6,6 +6,8 @@ import java.util.*;
 
 import org.json.simple.*;
 
+import it.progetto.Progetto_Esame.model.RecordTwitter;
+import it.progetto.Progetto_Esame.utils.PersistenceJSON;
 import it.progetto.Progetto_Esame.utils.RimuoviTag;
 
 
@@ -16,16 +18,7 @@ public class DataService {
 	public DataService() {
 	}
 	
-	public static void setTweets(){
-		final int COUNT = 5;
-		
-		URL query = null;
-		try {
-			query = new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q=covid19&result_type=popular&count="+COUNT);
-		} catch (MalformedURLException e1) {
-			e1.printStackTrace();
-		}
-		
+	public static void setTweets(URL query){
 	    URLConnection yc = null;
 		try {
 			yc = query.openConnection();
@@ -50,6 +43,8 @@ public class DataService {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+	    
+	    PersistenceJSON.writeJSONFile(data);
         
         JSONObject json = (JSONObject) JSONValue.parse(data);       
         JSONArray jsonArray = (JSONArray) json.get("statuses");
@@ -57,16 +52,23 @@ public class DataService {
 
         for(Object o : jsonArray) {
         	RecordTwitter tweet = new RecordTwitter();
-            tweet.setName(((JSONObject) (((JSONObject) o).get("user"))).get("name"));
-            tweet.setNation(((JSONObject) o).get("lang"));
-            tweet.setFollowers(((JSONObject) (((JSONObject) o).get("user"))).get("followers_count"));
-            tweet.setLike(((JSONObject) o).get("favorite_count"));
-            tweet.setRetweet(((JSONObject) o).get("retweet_count"));
-            tweet.setText(((JSONObject) o).get("text"));
-            tweet.setPlatform(RimuoviTag.rimuovi((String) (((JSONObject) o).get("source"))));
+        	tweet.setId_post((String)((JSONObject) o).get("id_str"));
+            tweet.setName((String)((JSONObject) (((JSONObject) o).get("user"))).get("name"));
+            tweet.setNation((String)((JSONObject) o).get("lang"));
+            tweet.setFollowers((Long)((JSONObject) (((JSONObject) o).get("user"))).get("followers_count"));
+            tweet.setLike((Long)((JSONObject) o).get("favorite_count"));
+            tweet.setRetweet((Long)((JSONObject) o).get("retweet_count"));
+            tweet.setText((String)((JSONObject) o).get("text"));
+            tweet.setDevice(RimuoviTag.rimuovi((String) (((JSONObject) o).get("source"))));
             tweets.add(tweet);
        }
-	}   
+	}  
+	
+	public static void setLocalTweets(){
+		
+	}
+	
+	
 	public static ArrayList<RecordTwitter> getTweets() {
 		return tweets;
 	}

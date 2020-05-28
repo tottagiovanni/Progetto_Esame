@@ -1,14 +1,23 @@
 package it.progetto.Progetto_Esame;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import it.progetto.Progetto_Esame.api.*;
+
+import it.progetto.Progetto_Esame.service.DataService;
 
 @SpringBootApplication
 public class ProgettoEsameApplication {
 
 	public static void main(String[] args) {
-		GestioneAPI.caricamentoJSON("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q=covid19&count=3&result_type=popular");
+		try {
+			DataService.setTweets(new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q=covid19&count=50&result_type=popular"));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		
 		SpringApplication.run(ProgettoEsameApplication.class, args);
 	}
 
