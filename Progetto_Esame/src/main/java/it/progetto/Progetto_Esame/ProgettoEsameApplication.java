@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import it.progetto.Progetto_Esame.service.DataService;
+import it.progetto.Progetto_Esame.service.MetadataService;
 import it.progetto.Progetto_Esame.service.RecordService;
 
 @SpringBootApplication

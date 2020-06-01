@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.progetto.Progetto_Esame.model.RecordTwitter;
 import it.progetto.Progetto_Esame.service.FilterService;
 import it.progetto.Progetto_Esame.service.JSONService;
+import it.progetto.Progetto_Esame.service.MetadataService;
 import it.progetto.Progetto_Esame.service.StatsService;
 
 @RestController
@@ -23,6 +24,7 @@ public class Controller {
 	FilterService filter;
 	@Autowired
 	StatsService stats;
+	
 
 	@RequestMapping(value = "/tweets", method = RequestMethod.GET)
 	public ResponseEntity<Object> getTweets(@RequestParam(name = "filter", required = false) String filtro){
@@ -39,7 +41,14 @@ public class Controller {
 		else {
 			ArrayList<RecordTwitter> tweets = filter.getFilterTweets(filtro);
 			return new ResponseEntity<>(stats.getStats(field, tweets), HttpStatus.OK);
-		}}
+		}
+	}
+	
+	@RequestMapping(value = "/metadata", method = RequestMethod.GET)
+	public ResponseEntity<Object> getMetadata(){
+		MetadataService ms = new MetadataService();
+		return new ResponseEntity<>(ms.getMetadata(), HttpStatus.OK);
+	}
 	
 	/*@RequestMapping(value = "/tweets", method = RequestMethod.GET)
 	public ResponseEntity<Object> getFilterTweets(@RequestParam(name = "filter", required = false) String filtro){
