@@ -4,9 +4,12 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import org.springframework.stereotype.Service;
+
 import it.progetto.Progetto_Esame.utils.PersistenceJSON;
 
 
+@Service
 public class DataService {
 	public DataService() {
 	}

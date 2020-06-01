@@ -13,13 +13,13 @@ import it.progetto.Progetto_Esame.service.RecordService;
 public class ProgettoEsameApplication {
 
 	public static void main(String[] args) {
-		//try {
-			String data = DataService.setLocalTweets(/*new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q=covid19&count=50&result_type=popular")*/);
+		try {
+			String data = DataService.setTweets(new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q=covid19&count=50&result_type=popular"));
 			RecordService rs = new RecordService(data);
-		//} catch (MalformedURLException e) {
-		//	e.printStackTrace();
-	//	}
-		
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		 
 		SpringApplication.run(ProgettoEsameApplication.class, args);
 	}
 
