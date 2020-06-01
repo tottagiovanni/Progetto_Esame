@@ -10,7 +10,7 @@ public class NumericalFilter {
 		else if (op.equals("$lte"))
 			return r_cast <= v_cast;
 		else if (op.equals("$eq"))
-			return true;
+			return r_cast.equals(v_cast);
 		else
 			return false;
 	}
