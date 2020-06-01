@@ -3,16 +3,16 @@ package it.progetto.Progetto_Esame.service;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import org.json.simple.*;
 
 import org.springframework.stereotype.Service;
 
 import it.progetto.Progetto_Esame.model.RecordTwitter;
-import it.progetto.Progetto_Esame.utils.CollectionFilter;
+//import it.progetto.Progetto_Esame.utils.CollectionFilter;
 import it.progetto.Progetto_Esame.utils.FilterSplitter;
 import it.progetto.Progetto_Esame.utils.NumericalFilter;
+import it.progetto.Progetto_Esame.utils.StringFilter;
 
 @Service
 public class FilterServiceImpl implements FilterService{
@@ -22,8 +22,10 @@ public class FilterServiceImpl implements FilterService{
 		String[] filter = FilterSplitter.split(json);
 		
 		Object value = ((JSONObject) (((JSONObject) json).get(filter[0]))).get(filter[1]);
+
+		System.out.println(value);
 		
-		ArrayList<RecordTwitter> out = new ArrayList<RecordTwitter>();
+		ArrayList<RecordTwitter> filteredJSON = new ArrayList<RecordTwitter>();
 		for(RecordTwitter record: tweets) {
 			try {
 				Method m = record.getClass().getMethod("get"+filter[0].substring(0, 1).toUpperCase()+filter[0].substring(1),null);
@@ -31,15 +33,16 @@ public class FilterServiceImpl implements FilterService{
 					Object record_value = m.invoke(record);
 					if (value instanceof Number)
 						if (NumericalFilter.compare(record_value, value, filter[1]))
-							out.add(record);
+							filteredJSON.add(record);
 					
 					/*if (value instanceof Collection)
 						if (CollectionFilter.compare(record_value, value, filter[1]))
-							out.add(record);*/
+							filteredJSON.add(record);*/
 					
+					if (value instanceof String)
+						if(StringFilter.compare(record_value, value, filter[1]))
+							filteredJSON.add(record);
 					
-					//if (value instanceof String)
-						// TO DO
 				} catch (IllegalAccessException e) {
 					e.printStackTrace();
 				} catch (IllegalArgumentException e) {
@@ -55,6 +58,6 @@ public class FilterServiceImpl implements FilterService{
 		}
 		
 		
-		return out;
+		return filteredJSON;
 	}
 }
