@@ -12,6 +12,7 @@ import it.progetto.Progetto_Esame.service.RecordService;
 public class CollectionFilter {
 	private static ArrayList<RecordTwitter> filteredJSON = new ArrayList<RecordTwitter>();
 	public static ArrayList<RecordTwitter> compare(String op, JSONArray json) {
+		filteredJSON.clear();
 		ArrayList<RecordTwitter> tweets = RecordService.getTweets();
 		ArrayList<String> keys = JSONKeys.getKeys(json);
 		ArrayList<Object> values = JSONValues.getValues(keys, json);
@@ -29,8 +30,8 @@ public class CollectionFilter {
 						Object record_value = m.invoke(record);
 						filteredValues.add(record_value);
 						if (op.equals("$or")) {
-							if (record_value.equals(values.get(i)))
-								filteredJSON.add(record);
+							if (record_value.equals(values.get(i)) && notinArray(record.getId_post()))
+									filteredJSON.add(record);
 						}
 						
 					} catch (IllegalAccessException e) {
@@ -49,20 +50,28 @@ public class CollectionFilter {
 			}
 			
 			if (op.equals("$and")) {
-				if(AND(op, filteredValues, values))
-					filteredValues.add(record);
+				if(AND(filteredValues, values))
+					filteredJSON.add(record);
 			}
 		}
 		
 		return filteredJSON;
 	}
 	 
-	private static boolean AND(String op, ArrayList<Object> filteredValues, ArrayList<Object> values) {
+	private static boolean AND(ArrayList<Object> filteredValues, ArrayList<Object> values) {
 		boolean ok = true;
 		for (Object value: values) {
 			if (!filteredValues.contains(value))
 					ok = false;
 		}
 		return ok;
+	}
+	
+	private static boolean notinArray(String id) {
+		for (RecordTwitter o: filteredJSON) {
+			if((o.getId_post()).equals(id))
+				return false;
+		}
+		return true;
 	}
 }
