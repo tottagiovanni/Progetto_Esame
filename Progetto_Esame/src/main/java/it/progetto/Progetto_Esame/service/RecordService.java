@@ -13,6 +13,7 @@ public class RecordService {
 	private static ArrayList<RecordTwitter> tweets= new ArrayList<>();
 
 	public RecordService(String data) {
+		tweets.clear();
 		JSONObject json = (JSONObject) JSONValue.parse(data);       
         JSONArray jsonArray = (JSONArray) json.get("statuses");
         
