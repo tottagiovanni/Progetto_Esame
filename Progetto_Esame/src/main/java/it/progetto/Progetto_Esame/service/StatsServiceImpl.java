@@ -3,22 +3,22 @@ package it.progetto.Progetto_Esame.service;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 
 import it.progetto.Progetto_Esame.model.RecordTwitter;
+import it.progetto.Progetto_Esame.model.StatsTwitter;
 import it.progetto.Progetto_Esame.utils.Statistics;
 
 @Service
 public class StatsServiceImpl implements StatsService {
-	public HashMap<String, Long> getStats(String field) {
+	public StatsTwitter getStats(String field) {
 		ArrayList<RecordTwitter> tweets = RecordService.getTweets();
 		return getStats(field, tweets);
 	}
 
 	@Override
-	public HashMap<String, Long> getStats(String field, ArrayList<RecordTwitter> tweets) {
+	public StatsTwitter getStats(String field, ArrayList<RecordTwitter> tweets) {
 		ArrayList<Long> stats = new ArrayList<Long>();
 
 		for (RecordTwitter tweet : tweets) {
@@ -53,14 +53,9 @@ public class StatsServiceImpl implements StatsService {
 			}
 		}
 
-		HashMap<String, Long> statsMap = new HashMap<String, Long>();
-		statsMap.put("avg", Statistics.avg(stats));
-		statsMap.put("min", Statistics.min(stats));
-		statsMap.put("max", Statistics.max(stats));
-		statsMap.put("sum", Statistics.sum(stats));
-		statsMap.put("count", (long) Statistics.count(stats));
-
-		return statsMap;
+		StatsTwitter stats_twitter = new StatsTwitter(field, Statistics.avg(stats), Statistics.min(stats), Statistics.max(stats), Statistics.sum(stats), (long) Statistics.count(stats));
+		
+		return stats_twitter;
 	}
 
 }
