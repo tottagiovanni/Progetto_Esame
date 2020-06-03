@@ -11,7 +11,7 @@ import it.progetto.Progetto_Esame.service.DataService;
 import it.progetto.Progetto_Esame.service.RecordService;
 
 public class IntroWindow {
-	public static void start() {
+	public static void show() {
 		JFrame pannello = new JFrame("CARICA");
         pannello.getContentPane().setLayout(new GridLayout(5,1));
         
@@ -53,19 +53,21 @@ public class IntroWindow {
         		String data = DataService.setLocalTweets();
         		RecordService rs = new RecordService(data);
         		JOptionPane.showMessageDialog(null, "Tweet caricati con successo");
+        		redirect(pannello);
         	}
         });
         
         Action action = new AbstractAction() {
         	public void actionPerformed(ActionEvent e) {
             	try {
-					String data = DataService.setTweets(new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q="+cercaText.getText()+"&count=50&result_type=mixed"));
+					String data = DataService.setTweets(new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q="+cercaText.getText().replaceAll("\\s+","")+"&count=50&result_type=mixed"));
 	        		RecordService rs = new RecordService(data);
             	} catch (MalformedURLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
             	cosa.setText("Hai cercato: " + cercaText.getText());
+            	redirect(pannello);
             }
         };
         
@@ -79,5 +81,16 @@ public class IntroWindow {
         		System.exit(0);
         	}
         });
+    	/*
+        pannello.addWindowListener(new WindowAdapter() {
+        	  public void windowClosing(WindowEvent we) {
+        	    System.exit(0);
+        	  }
+        	});*/
+	}
+	
+	private static void redirect(JFrame pannello) {
+		TweetsWindow.show();
+		pannello.dispatchEvent(new WindowEvent(pannello, WindowEvent.WINDOW_CLOSING));
 	}
 }

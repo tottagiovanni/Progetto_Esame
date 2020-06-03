@@ -37,4 +37,14 @@ public class RecordService {
 	public static ArrayList<RecordTwitter> getTweets() {
 		return tweets;
 	}
+
+
+	public static RecordTwitter getRecord(String id_post) {
+		for(RecordTwitter tweet: tweets) {
+			if(tweet.getId_post().equals(id_post)) {
+				return tweet;
+			}
+		}
+		return null;
+	}
 }

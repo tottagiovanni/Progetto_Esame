@@ -13,7 +13,7 @@ import it.progetto.Progetto_Esame.service.RecordService;
 @SpringBootApplication
 public class ProgettoEsameApplication {
 	public static void main(String[] args) {
-        IntroWindow.start();
+        IntroWindow.show();
 	         
 		/*try {
 			String data = DataService.setTweets(new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q=covid19&count=50&result_type=mixed"));

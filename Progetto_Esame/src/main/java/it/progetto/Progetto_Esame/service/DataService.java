@@ -15,6 +15,7 @@ public class DataService {
 	}
 	
 	public static String setTweets(URL query){
+		
 	    URLConnection yc = null;
 		try {
 			yc = query.openConnection();
@@ -50,7 +51,6 @@ public class DataService {
 			Scanner reader = new Scanner(new File("ultima_ricerca.json"));
 			while (reader.hasNextLine()) {
 				 data = reader.nextLine();
-				System.out.println(data);
 			}
 			reader.close();
 		} catch (FileNotFoundException e) {
