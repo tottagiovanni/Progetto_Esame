@@ -9,6 +9,7 @@ public class MetadataService {
 	
 	public MetadataService(){
 		metadati.add(new MetadataTwitter("id_post", "Numero identificativo del post", "String"));
+		metadati.add(new MetadataTwitter("data", "Data e ora di creazione del post", "String"));
 		metadati.add(new MetadataTwitter("name", "Nome dell'utente del post", "String"));
 		metadati.add(new MetadataTwitter("text", "Testo del post", "String"));
 		metadati.add(new MetadataTwitter("followers", "Numero di followers dell'utente del post", "Long"));
@@ -16,6 +17,7 @@ public class MetadataService {
 		metadati.add(new MetadataTwitter("retweet", "Numero di retweet del post", "Long"));
 		metadati.add(new MetadataTwitter("nation", "Nazione nella quale è stato scritto il post", "String"));
 		metadati.add(new MetadataTwitter("device", "Dispositivo dal quale è stato scritto il post", "String"));
+		metadati.add(new MetadataTwitter("hashtags", "Numero di hashtags in un post", "Long"));
 	}
 	
 	public ArrayList<MetadataTwitter> getMetadata(){

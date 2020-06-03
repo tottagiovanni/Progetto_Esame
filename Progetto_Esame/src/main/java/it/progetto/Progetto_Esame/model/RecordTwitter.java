@@ -2,6 +2,7 @@ package it.progetto.Progetto_Esame.model;
 
 public class RecordTwitter {
 	private String id_post;
+	private String date;
 	private String name;
 	private String text;
 	private long followers;
@@ -9,6 +10,7 @@ public class RecordTwitter {
 	private long retweet;
 	private String nation;
 	private String device;
+	private long hashtags;
 	
 	public RecordTwitter() {
 		super();
@@ -25,6 +27,14 @@ public class RecordTwitter {
 	public String getId_post() {
 		return id_post;
 	}
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public void setId_post(String id_post) {
 		this.id_post = id_post;
 	}
@@ -63,6 +73,14 @@ public class RecordTwitter {
 	}
 	public void setDevice(String device) {
 		this.device = device;
+	}
+
+	public long getHashtags() {
+		return hashtags;
+	}
+
+	public void setHashtags(long hashtags) {
+		this.hashtags = hashtags;
 	}
 	
 	

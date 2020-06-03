@@ -21,6 +21,7 @@ public class RecordService {
         for(Object o : jsonArray) {
         	RecordTwitter tweet = new RecordTwitter();
         	tweet.setId_post((String)((JSONObject) o).get("id_str"));
+        	tweet.setDate((String)((JSONObject) o).get("created_at"));
             tweet.setName((String)((JSONObject) (((JSONObject) o).get("user"))).get("name"));
             tweet.setNation((String)((JSONObject) o).get("lang"));
             tweet.setFollowers((Long)((JSONObject) (((JSONObject) o).get("user"))).get("followers_count"));
@@ -28,6 +29,8 @@ public class RecordService {
             tweet.setRetweet((Long)((JSONObject) o).get("retweet_count"));
             tweet.setText((String)((JSONObject) o).get("text"));
             tweet.setDevice(RimuoviTag.rimuovi((String) (((JSONObject) o).get("source"))));
+            JSONArray hashtags = (JSONArray)((JSONObject) (((JSONObject) o).get("entities"))).get("hashtags");
+            tweet.setHashtags(hashtags.size());
             tweets.add(tweet);
         }
 	}
