@@ -56,4 +56,24 @@ public class Statistics {
 		return stats.size();			
 	}
 	
+	/*public static Long moda(ArrayList<Long> stats) {
+		Long cont = 0L;
+		ArrayList<Long> val = new ArrayList<Long>();
+		
+		for(int i = 0; i < stats.size()-2; i++) {
+			
+		}
+		
+	}*/
+	
+	/*public static double standardDeviation(ArrayList<Long> stats) {
+		Long media = avg(stats);
+		Long sum = 0L;
+		
+		for (Long stat: stats)
+			sum += ((stat - media)^2);
+		
+		return Math.sqrt(sum/stats.size());
+	}*/
+	
 }

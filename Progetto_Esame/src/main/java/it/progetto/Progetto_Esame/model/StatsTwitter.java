@@ -7,6 +7,12 @@ public class StatsTwitter {
 	private Long max;
 	private Long sum;
 	private Long count;
+	//private double standardDeviation;
+	
+	public StatsTwitter(String field) {
+		super();
+		this.field = field;
+	}
 	
 	public StatsTwitter(String field, Long average, Long min, Long max, Long sum, Long count) {
 		super();
@@ -16,6 +22,7 @@ public class StatsTwitter {
 		this.max = max;
 		this.sum = sum;
 		this.count = count;
+		//this.standardDeviation = standardDeviation;
 	}
 	
 	public String getField() {
@@ -54,5 +61,11 @@ public class StatsTwitter {
 	public void setCount(Long count) {
 		this.count = count;
 	}
+	/*public double getStandardDeviation() {
+		return standardDeviation;
+	}
+	public void setStandardDeviation(double standardDeviation) {
+		this.standardDeviation = standardDeviation;
+	}*/
 	
 }

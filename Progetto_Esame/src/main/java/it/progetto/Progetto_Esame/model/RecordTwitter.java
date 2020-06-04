@@ -16,6 +16,11 @@ public class RecordTwitter {
 		super();
 	}
 	
+	public RecordTwitter(String text) {
+		super();
+		this.text = text;
+	}
+
 	public long getFollowers() {
 		return followers;
 	}

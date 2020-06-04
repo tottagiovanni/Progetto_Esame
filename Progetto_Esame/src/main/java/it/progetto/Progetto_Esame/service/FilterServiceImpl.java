@@ -1,15 +1,10 @@
 package it.progetto.Progetto_Esame.service;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collection;
 
-import org.apache.commons.logging.Log;
 import org.json.simple.*;
-
 import org.springframework.stereotype.Service;
 
 import it.progetto.Progetto_Esame.model.RecordTwitter;
@@ -19,15 +14,17 @@ import it.progetto.Progetto_Esame.utils.*;
 
 @Service
 public class FilterServiceImpl implements FilterService{
+	private static ArrayList<RecordTwitter> filteredJSON = new ArrayList<RecordTwitter>();
 	public ArrayList<RecordTwitter> getFilterTweets(String filtro){
+		filteredJSON.clear();
 		JSONObject json = (JSONObject) JSONValue.parse(filtro);
 		ArrayList<RecordTwitter> tweets = RecordService.getTweets();
 		
 		try {
 			ControlloJSON.controllo(json);
 		}catch(InvalidJSONException e){
-			System.out.println(e.toString());
-			return null;
+			filteredJSON.add((new RecordTwitter(e.toString())));
+			return filteredJSON;
 		}
 		
 		String[] filter = FilterSplitter.split(json);
@@ -38,7 +35,6 @@ public class FilterServiceImpl implements FilterService{
 		
 		Object value = ((JSONObject) (((JSONObject) json).get(filter[0]))).get(filter[1]);
 		
-		ArrayList<RecordTwitter> filteredJSON = new ArrayList<RecordTwitter>();
 		for(RecordTwitter record: tweets) {
 			try {
 				Method m = record.getClass().getMethod("get"+filter[0].substring(0, 1).toUpperCase()+filter[0].substring(1),null);
@@ -48,7 +44,7 @@ public class FilterServiceImpl implements FilterService{
 					try {
 						ControlloTipo.controllo(record_value, value);
 					} catch (InvalidTypeException e) {
-						System.out.println(e.toString());
+						filteredJSON.add(new RecordTwitter(e.toString()));			
 						break;
 					}
 					if (value instanceof Number)
@@ -72,7 +68,6 @@ public class FilterServiceImpl implements FilterService{
 				System.out.println(e.toString());
 			}
 		}
-		
 		
 		return filteredJSON;
 	}

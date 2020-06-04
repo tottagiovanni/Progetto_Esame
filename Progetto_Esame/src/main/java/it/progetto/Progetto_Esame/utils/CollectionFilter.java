@@ -43,7 +43,8 @@ public class CollectionFilter {
 						System.out.println(e.toString());
 					}
 				} catch (NoSuchMethodException e) {
-					System.out.println(e.toString());
+					filteredJSON.add(new RecordTwitter(e.toString()));
+					return filteredJSON;
 				} catch (SecurityException e) {
 					System.out.println(e.toString());
 				}

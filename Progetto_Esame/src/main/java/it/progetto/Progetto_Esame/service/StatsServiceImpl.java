@@ -34,15 +34,13 @@ public class StatsServiceImpl implements StatsService {
 						Object tmp = 0L; 
 						ControlloTipo.controllo(record_value, tmp);
 					} catch (InvalidTypeException e) {
-						System.out.println(e.toString());
-						break;
+						return new StatsTwitter(e.toString());
 					}
 
 					if (record_value instanceof Long)
 						stats.add((Long) record_value);
 
 				} catch (IllegalAccessException e) {
-
 					System.out.println(e.toString());
 				} catch (IllegalArgumentException e) {
 					System.out.println(e.toString());
@@ -51,14 +49,13 @@ public class StatsServiceImpl implements StatsService {
 				}
 
 			} catch (NoSuchMethodException e) {
-				System.out.println(e.toString());
-				break;
+				return new StatsTwitter(e.toString());
 			} catch (SecurityException e) {
 				System.out.println(e.toString());
 			}
 		}
 
-		StatsTwitter stats_twitter = new StatsTwitter(field, Statistics.avg(stats), Statistics.min(stats), Statistics.max(stats), Statistics.sum(stats), (long) Statistics.count(stats));
+		StatsTwitter stats_twitter = new StatsTwitter(field, Statistics.avg(stats), Statistics.min(stats), Statistics.max(stats), Statistics.sum(stats), (long)Statistics.count(stats));
 		
 		return stats_twitter;
 	}

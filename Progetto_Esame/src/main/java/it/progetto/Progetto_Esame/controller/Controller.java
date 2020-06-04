@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.progetto.Progetto_Esame.exceptions.InvalidRequestException;
 import it.progetto.Progetto_Esame.service.FilterService;
 import it.progetto.Progetto_Esame.service.JSONService;
 import it.progetto.Progetto_Esame.service.MetadataService;
 import it.progetto.Progetto_Esame.service.StatsService;
+import it.progetto.Progetto_Esame.utils.CheckRequest;
 
 @RestController
 public class Controller {
@@ -34,7 +36,13 @@ public class Controller {
 	}
 	
 	@RequestMapping(value = "/stats", method = RequestMethod.GET)
-	public ResponseEntity<Object> getStats(@RequestParam(name = "field") String field, @RequestParam(name ="filter", required=false) String filtro){
+	public ResponseEntity<Object> getStats(@RequestParam(name = "field", defaultValue = "") String field, @RequestParam(name ="filter", required=false) String filtro){
+		try {
+			CheckRequest.check(field);
+		}catch(InvalidRequestException e) {
+			return new ResponseEntity<>(e.toString(),HttpStatus.BAD_REQUEST);
+		}
+		
 		if(filtro == null)
 			return new ResponseEntity<>(stats.getStats(field), HttpStatus.OK);
 		else {
@@ -54,7 +62,13 @@ public class Controller {
 	}
 	
 	@RequestMapping(value = "/stats", method = RequestMethod.POST)
-	public ResponseEntity<Object> getPostTweets(@RequestParam(name = "field") String field, @RequestBody String filtro){
+	public ResponseEntity<Object> getPostTweets(@RequestParam(name = "field", defaultValue = "") String field, @RequestBody String filtro){
+		try {
+			CheckRequest.check(field);
+		}catch(InvalidRequestException e) {
+			return new ResponseEntity<>(e.toString(),HttpStatus.BAD_REQUEST);
+		}
+		
 		return new ResponseEntity<>(stats.getStats(field, filter.getFilterTweets(filtro)), HttpStatus.OK);
 	}
 }
