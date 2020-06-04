@@ -58,13 +58,14 @@ public class IntroWindow {
         });
         
         Action action = new AbstractAction() {
-        	public void actionPerformed(ActionEvent e) {
+			private static final long serialVersionUID = 1L;
+
+			public void actionPerformed(ActionEvent e) {
             	try {
 					String data = DataService.setTweets(new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q="+cercaText.getText().replaceAll("\\s+","")+"&count=50&result_type=mixed"));
 	        		RecordService rs = new RecordService(data);
             	} catch (MalformedURLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					System.out.println(e1.toString());
 				}
             	cosa.setText("Hai cercato: " + cercaText.getText());
             	redirect(pannello);

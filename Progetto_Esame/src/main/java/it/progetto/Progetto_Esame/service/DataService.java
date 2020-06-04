@@ -20,14 +20,14 @@ public class DataService {
 		try {
 			yc = query.openConnection();
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			System.out.println(e1.toString());
 		}
 		
 	    BufferedReader in = null;
 		try {
 			in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			System.out.println(e1.toString());
 		}
 	    
 	    
@@ -38,7 +38,7 @@ public class DataService {
 			while ((inputLine = in.readLine()) != null)
 				data += inputLine;
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			System.out.println(e1.toString());
 		}
 	    
 	    PersistenceJSON.writeJSONFile(data);
@@ -55,7 +55,7 @@ public class DataService {
 			reader.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Errore nel caricamento del file!");
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		return data;
 	}

@@ -6,6 +6,7 @@ import java.util.*;
 
 import org.json.simple.JSONArray;
 
+import it.progetto.Progetto_Esame.exceptions.InvalidTypeException;
 import it.progetto.Progetto_Esame.model.RecordTwitter;
 import it.progetto.Progetto_Esame.service.RecordService;
 
@@ -35,16 +36,16 @@ public class CollectionFilter {
 						}
 						
 					} catch (IllegalAccessException e) {
-						e.printStackTrace();
+						System.out.println(e.toString());
 					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
+						System.out.println(e.toString());
 					} catch (InvocationTargetException e) {
-						e.printStackTrace();
+						System.out.println(e.toString());
 					}
 				} catch (NoSuchMethodException e) {
-					e.printStackTrace();
+					System.out.println(e.toString());
 				} catch (SecurityException e) {
-					e.printStackTrace();
+					System.out.println(e.toString());
 				}
 				i++;
 			}

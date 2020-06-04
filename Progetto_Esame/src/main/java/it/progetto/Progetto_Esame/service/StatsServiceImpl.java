@@ -6,8 +6,10 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
+import it.progetto.Progetto_Esame.exceptions.InvalidTypeException;
 import it.progetto.Progetto_Esame.model.RecordTwitter;
 import it.progetto.Progetto_Esame.model.StatsTwitter;
+import it.progetto.Progetto_Esame.utils.ControlloTipo;
 import it.progetto.Progetto_Esame.utils.Statistics;
 
 @Service
@@ -25,31 +27,34 @@ public class StatsServiceImpl implements StatsService {
 			Method m;
 			try {
 				m = tweet.getClass().getMethod("get" + field.substring(0, 1).toUpperCase() + field.substring(1), null);
-
 				try {
 					Object record_value = m.invoke(tweet);
+					
+					try {
+						Object tmp = 0L; 
+						ControlloTipo.controllo(record_value, tmp);
+					} catch (InvalidTypeException e) {
+						System.out.println(e.toString());
+						break;
+					}
 
 					if (record_value instanceof Long)
 						stats.add((Long) record_value);
 
 				} catch (IllegalAccessException e) {
 
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println(e.toString());
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println(e.toString());
 				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println(e.toString());
 				}
 
 			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(e.toString());
+				break;
 			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(e.toString());
 			}
 		}
 

@@ -9,14 +9,21 @@ public class Statistics {
 			avg += stat;
 		try {
 			avg = avg / stats.size();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (ArithmeticException e) {
+			System.out.println(e.toString());
 		}
 		return avg;
 	}
 	
 	public static Long min(ArrayList<Long> stats){
-		Long min = stats.get(0);
+		Long min = 0L;
+		try {
+			min = stats.get(0);
+		}
+		catch(Exception e) {
+			System.out.println(e.toString());
+		}
+		
 		for(Long stat:stats)
 			if(min > stat)
 				min = stat;
@@ -24,7 +31,14 @@ public class Statistics {
 	}
 
 	public static Long max(ArrayList<Long> stats){
-		Long max = stats.get(0);
+		Long max = 0L;
+		try {
+			max = stats.get(0);
+		}
+		catch(Exception e) {
+			System.out.println(e.toString());
+		}
+		
 		for(Long stat:stats)
 			if(max < stat)
 				max = stat;

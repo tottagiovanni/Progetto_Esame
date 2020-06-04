@@ -14,7 +14,7 @@ public class PersistenceJSON {
             file.flush();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         }
 	}
 }

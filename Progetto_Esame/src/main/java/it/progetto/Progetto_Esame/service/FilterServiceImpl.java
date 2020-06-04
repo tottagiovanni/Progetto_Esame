@@ -1,29 +1,38 @@
 package it.progetto.Progetto_Esame.service;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
 
+import org.apache.commons.logging.Log;
 import org.json.simple.*;
 
 import org.springframework.stereotype.Service;
 
 import it.progetto.Progetto_Esame.model.RecordTwitter;
-import it.progetto.Progetto_Esame.utils.CollectionFilter;
-//import it.progetto.Progetto_Esame.utils.CollectionFilter;
-import it.progetto.Progetto_Esame.utils.FilterSplitter;
-import it.progetto.Progetto_Esame.utils.NumericalFilter;
-import it.progetto.Progetto_Esame.utils.StringFilter;
+
+import it.progetto.Progetto_Esame.exceptions.*;
+import it.progetto.Progetto_Esame.utils.*;
 
 @Service
 public class FilterServiceImpl implements FilterService{
 	public ArrayList<RecordTwitter> getFilterTweets(String filtro){
 		JSONObject json = (JSONObject) JSONValue.parse(filtro);
 		ArrayList<RecordTwitter> tweets = RecordService.getTweets();
+		
+		try {
+			ControlloJSON.controllo(json);
+		}catch(InvalidJSONException e){
+			System.out.println(e.toString());
+			return null;
+		}
+		
 		String[] filter = FilterSplitter.split(json);
 		
 		if (filter[0].contains("$")) {
-			//JSONArray j_arr = (JSONArray) json.get(filter[0]);
 			return CollectionFilter.compare(filter[0], (JSONArray)json.get(filter[0]));
 		}
 		
@@ -36,29 +45,31 @@ public class FilterServiceImpl implements FilterService{
 				
 				try {
 					Object record_value = m.invoke(record);
+					try {
+						ControlloTipo.controllo(record_value, value);
+					} catch (InvalidTypeException e) {
+						System.out.println(e.toString());
+						break;
+					}
 					if (value instanceof Number)
 						if (NumericalFilter.compare(record_value, value, filter[1]))
 							filteredJSON.add(record);
-					
-					/*if (value instanceof Collection)
-						if (CollectionFilter.compare(value, filter[0]))
-							filteredJSON.add(record);*/
-					
+						
 					if (value instanceof String)
 						if(StringFilter.compare(record_value, value, filter[1]))
 							filteredJSON.add(record);
-					
 				} catch (IllegalAccessException e) {
-					e.printStackTrace();
+					System.out.println(e.toString());
 				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
+					System.out.println(e.toString());
 				} catch (InvocationTargetException e) {
-					e.printStackTrace();
+					System.out.println(e.toString());
 				}
 			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
+				System.out.println(e.toString());
+				break;
 			} catch (SecurityException e) {
-				e.printStackTrace();
+				System.out.println(e.toString());
 			}
 		}
 		
