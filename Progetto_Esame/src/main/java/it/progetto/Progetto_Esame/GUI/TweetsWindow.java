@@ -57,13 +57,15 @@ public class TweetsWindow {
         
         chiudi.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		System.exit(0);
+        		//System.exit(0);
+        		pannello.dispose();
         	}
         });
         
         pannello.addWindowListener(new WindowAdapter() {
         	  public void windowClosing(WindowEvent we) {
-        	    System.exit(0);
+        	    //System.exit(0);
+        	    pannello.dispose();
         	  }
         	});
 	}

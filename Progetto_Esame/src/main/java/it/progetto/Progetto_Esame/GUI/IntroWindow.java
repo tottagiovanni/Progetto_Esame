@@ -51,9 +51,14 @@ public class IntroWindow {
         savedButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		String data = DataService.setLocalTweets();
-        		RecordService rs = new RecordService(data);
-        		JOptionPane.showMessageDialog(null, "Tweet caricati con successo");
-        		redirect(pannello);
+        		try {
+        			RecordService rs = new RecordService(data);
+        			JOptionPane.showMessageDialog(null, "Tweet caricati con successo");
+        			redirect(pannello);
+        		}catch(NullPointerException e1){
+        			System.out.println(e1.toString());
+        			JOptionPane.showMessageDialog(null, "Ultima ricerca non disponibile");
+        		}
         	}
         });
         
@@ -66,6 +71,7 @@ public class IntroWindow {
 	        		RecordService rs = new RecordService(data);
             	} catch (MalformedURLException e1) {
 					System.out.println(e1.toString());
+					
 				}
             	cosa.setText("Hai cercato: " + cercaText.getText());
             	redirect(pannello);
@@ -82,16 +88,16 @@ public class IntroWindow {
         		System.exit(0);
         	}
         });
-    	/*
+    	
         pannello.addWindowListener(new WindowAdapter() {
         	  public void windowClosing(WindowEvent we) {
         	    System.exit(0);
         	  }
-        	});*/
+        	});
 	}
 	
 	private static void redirect(JFrame pannello) {
 		TweetsWindow.show();
-		pannello.dispatchEvent(new WindowEvent(pannello, WindowEvent.WINDOW_CLOSING));
+		//pannello.dispatchEvent(new WindowEvent(pannello, WindowEvent.WINDOW_CLOSING));
 	}
 }
