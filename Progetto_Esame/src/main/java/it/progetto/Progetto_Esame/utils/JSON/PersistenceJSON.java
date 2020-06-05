@@ -1,4 +1,4 @@
-package it.progetto.Progetto_Esame.utils;
+package it.progetto.Progetto_Esame.utils.JSON;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -14,8 +14,8 @@ import it.progetto.Progetto_Esame.service.RecordService;
 
 public class InfoWindow {
 	static public void show(String id_post) {
-			JFrame pannello = new JFrame("Informazioni su "+id_post);
-			pannello.getContentPane().setLayout(new GridBagLayout());
+			JFrame infoFrame = new JFrame("Informazioni su "+id_post);
+			infoFrame.getContentPane().setLayout(new GridBagLayout());
 			
 			RecordTwitter tweet = RecordService.getRecord(id_post);
 			JLabel name = new JLabel("Nome: " + tweet.getName());
@@ -47,7 +47,7 @@ public class InfoWindow {
         	c.gridx = 0;
         	c.gridy = 0;
         	c.gridwidth = 1;
-        	pannello.add(panelInfo, c);
+        	infoFrame.add(panelInfo, c);
 
         	
 			JButton chiudi = new JButton("CHIUDI");	
@@ -57,15 +57,15 @@ public class InfoWindow {
         	c.gridx = 0;
         	c.gridy = 1;
         	c.gridwidth = 1;
-			pannello.add(chiudi, c);
+			infoFrame.add(chiudi, c);
 			
-	        pannello.pack();
-	        pannello.setVisible(true);
-	        pannello.setResizable(true);
+	        infoFrame.pack();
+	        infoFrame.setVisible(true);
+	        infoFrame.setResizable(true);
 	        
 	        chiudi.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
-	        		pannello.dispose();
+	        		infoFrame.dispose();
 	        	}
 	        });
 	        

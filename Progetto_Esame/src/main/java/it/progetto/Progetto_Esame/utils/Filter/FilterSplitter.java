@@ -1,4 +1,4 @@
-package it.progetto.Progetto_Esame.utils;
+package it.progetto.Progetto_Esame.utils.Filter;
 
 import org.json.simple.JSONObject;
 

@@ -1,4 +1,4 @@
-package it.progetto.Progetto_Esame.utils;
+package it.progetto.Progetto_Esame.utils.Filter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -6,9 +6,10 @@ import java.util.*;
 
 import org.json.simple.JSONArray;
 
-import it.progetto.Progetto_Esame.exceptions.InvalidTypeException;
 import it.progetto.Progetto_Esame.model.RecordTwitter;
 import it.progetto.Progetto_Esame.service.RecordService;
+import it.progetto.Progetto_Esame.utils.JSON.JSONKeys;
+import it.progetto.Progetto_Esame.utils.JSON.JSONValues;
 
 public class CollectionFilter {
 	private static ArrayList<RecordTwitter> filteredJSON = new ArrayList<RecordTwitter>();

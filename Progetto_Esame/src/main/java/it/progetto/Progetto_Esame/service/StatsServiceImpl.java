@@ -6,11 +6,10 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
-import io.micrometer.core.instrument.Statistic;
 import it.progetto.Progetto_Esame.exceptions.InvalidTypeException;
 import it.progetto.Progetto_Esame.model.RecordTwitter;
 import it.progetto.Progetto_Esame.model.StatsTwitter;
-import it.progetto.Progetto_Esame.utils.ControlloTipo;
+import it.progetto.Progetto_Esame.utils.CheckType;
 import it.progetto.Progetto_Esame.utils.Statistics;
 
 @Service
@@ -33,7 +32,7 @@ public class StatsServiceImpl implements StatsService {
 					
 					try {
 						Object tmp = 0L; 
-						ControlloTipo.controllo(record_value, tmp);
+						CheckType.check(record_value, tmp);
 					} catch (InvalidTypeException e) {
 						return new StatsTwitter(e.toString());
 					}
@@ -56,7 +55,7 @@ public class StatsServiceImpl implements StatsService {
 			}
 		}
 
-		StatsTwitter stats_twitter = new StatsTwitter(field, Statistics.avg(stats), Statistics.min(stats), Statistics.max(stats), Statistics.sum(stats), (long)Statistics.count(stats), Statistics.standardDeviation(stats), Statistics.moda(stats));
+		StatsTwitter stats_twitter = new StatsTwitter(field, Statistics.avg(stats), Statistics.min(stats), Statistics.max(stats), Statistics.sum(stats), (long)Statistics.count(stats), Statistics.standardDeviation(stats), Statistics.mode(stats));
 		
 		return stats_twitter;
 	}

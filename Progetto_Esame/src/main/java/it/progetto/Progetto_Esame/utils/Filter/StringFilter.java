@@ -1,4 +1,4 @@
-package it.progetto.Progetto_Esame.utils;
+package it.progetto.Progetto_Esame.utils.Filter;
 
 public class StringFilter {
 	public static boolean compare(Object r, Object v, String op) {

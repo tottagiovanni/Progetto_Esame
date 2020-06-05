@@ -12,41 +12,41 @@ import it.progetto.Progetto_Esame.service.RecordService;
 
 public class IntroWindow {
 	public static void show() {
-		JFrame pannello = new JFrame("CARICA");
-        pannello.getContentPane().setLayout(new GridLayout(5,1));
+		JFrame introFrame = new JFrame("CARICA");
+        introFrame.getContentPane().setLayout(new GridLayout(5,1));
         
         JButton savedButton = new JButton("CARICA ULTIMA RICERCA");
         
         JLabel oppure = new JLabel("oppure");
         oppure.setHorizontalAlignment(JLabel.CENTER);
         
-        JLabel cercaLabel = new JLabel("inserisci cosa vuoi cercare: ");
-        JTextField cercaText = new JTextField();
-        JPanel cercaPanel = new JPanel();
-        cercaPanel.setLayout(new GridLayout(1,2));
-        cercaPanel.add(cercaLabel);
-        cercaPanel.add(cercaText);
+        JLabel searchLabel = new JLabel("inserisci msgLabel vuoi cercare: ");
+        JTextField searchText = new JTextField();
+        JPanel searchPanel = new JPanel();
+        searchPanel.setLayout(new GridLayout(1,2));
+        searchPanel.add(searchLabel);
+        searchPanel.add(searchText);
         
-        JLabel cosa = new JLabel();
+        JLabel msgLabel = new JLabel();
         
         JButton okCerca = new JButton("Cerca");
         JButton esciButton = new JButton("Esci");
         
-        JPanel bottoniPanel = new JPanel();
-        bottoniPanel.setLayout(new GridLayout(1,2));
-        bottoniPanel.add(okCerca);
-        bottoniPanel.add(esciButton);
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new GridLayout(1,2));
+        buttonsPanel.add(okCerca);
+        buttonsPanel.add(esciButton);
         
 
-        pannello.getContentPane().add(savedButton);
-        pannello.getContentPane().add(oppure);
-        pannello.getContentPane().add(cercaPanel);  	
-        pannello.getContentPane().add(cosa);  	
-        pannello.getContentPane().add(bottoniPanel);  	
+        introFrame.getContentPane().add(savedButton);
+        introFrame.getContentPane().add(oppure);
+        introFrame.getContentPane().add(searchPanel);  	
+        introFrame.getContentPane().add(msgLabel);  	
+        introFrame.getContentPane().add(buttonsPanel);  	
 
-        pannello.setResizable(false);
-        pannello.pack();
-        pannello.setVisible(true);
+        introFrame.setResizable(false);
+        introFrame.pack();
+        introFrame.setVisible(true);
         
         savedButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -54,7 +54,7 @@ public class IntroWindow {
         		try {
         			RecordService rs = new RecordService(data);
         			JOptionPane.showMessageDialog(null, "Tweet caricati con successo");
-        			redirect(pannello);
+        			redirect(introFrame);
         		}catch(NullPointerException e1){
         			System.out.println(e1.toString());
         			JOptionPane.showMessageDialog(null, "Ultima ricerca non disponibile");
@@ -67,37 +67,36 @@ public class IntroWindow {
 
 			public void actionPerformed(ActionEvent e) {
             	try {
-					String data = DataService.setTweets(new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q="+cercaText.getText().replaceAll("\\s+","")+"&count=50&result_type=mixed"));
+					String data = DataService.setTweets(new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q="+searchText.getText().replaceAll("\\s+","")+"&count=50&result_type=mixed"));
 	        		RecordService rs = new RecordService(data);
             	} catch (MalformedURLException e1) {
 					System.out.println(e1.toString());
 					
 				}
-            	cosa.setText("Hai cercato: " + cercaText.getText());
-            	redirect(pannello);
+            	msgLabel.setText("Hai cercato: " + searchText.getText());
+            	redirect(introFrame);
             }
         };
         
-        cercaText.addActionListener(action);
+        searchText.addActionListener(action);
         
         okCerca.addActionListener(action);
         
         esciButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		pannello.dispose();
+        		introFrame.dispose();
         		System.exit(0);
         	}
         });
     	
-        pannello.addWindowListener(new WindowAdapter() {
+        introFrame.addWindowListener(new WindowAdapter() {
         	  public void windowClosing(WindowEvent we) {
         	    System.exit(0);
         	  }
         	});
 	}
 	
-	private static void redirect(JFrame pannello) {
+	private static void redirect(JFrame introFrame) {
 		TweetsWindow.show();
-		//pannello.dispatchEvent(new WindowEvent(pannello, WindowEvent.WINDOW_CLOSING));
 	}
 }

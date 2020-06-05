@@ -1,20 +1,20 @@
 package it.progetto.Progetto_Esame.utils;
 
-public class RimuoviTag {
-	public RimuoviTag(){
+public class RemoveTag {
+	public RemoveTag(){
 	}
 
-	static public String rimuovi(String jsonConTag) {
-		String jsonSenzaTag = "";
+	static public String remove(String jsonConTag) {
+		String JSONTagless = "";
 		boolean confirm = true;
 		for(char c : jsonConTag.toCharArray()) {
 			if(c == '<')
 				confirm = true;
 			if(!confirm)
-				jsonSenzaTag += c;
+				JSONTagless += c;
 			if(c == '>')
 				confirm = false;
 		}
-		return jsonSenzaTag;
+		return JSONTagless;
 	}
 }

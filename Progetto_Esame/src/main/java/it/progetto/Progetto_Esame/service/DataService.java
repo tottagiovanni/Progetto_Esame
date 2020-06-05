@@ -6,7 +6,7 @@ import java.util.*;
 
 import org.springframework.stereotype.Service;
 
-import it.progetto.Progetto_Esame.utils.PersistenceJSON;
+import it.progetto.Progetto_Esame.utils.JSON.PersistenceJSON;
 
 
 @Service

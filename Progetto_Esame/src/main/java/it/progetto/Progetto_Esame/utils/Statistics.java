@@ -56,7 +56,7 @@ public class Statistics {
 		return stats.size();			
 	}
 	
-	public static Long moda(ArrayList<Long> stats) {
+	public static Long mode(ArrayList<Long> stats) {
 		Long cont = 0L;
 		ArrayList<Long> val = new ArrayList<Long>();
 		
@@ -77,11 +77,10 @@ public class Statistics {
 	}
 	
 	public static double standardDeviation(ArrayList<Long> stats) {
-		Long media = avg(stats);
 		double sum = 0;
 		
 		for (Long stat: stats)
-			sum += (Math.pow((stat - media) ,2));
+			sum += (Math.pow((stat - avg(stats)) ,2));
 		
 		return Math.sqrt(sum/stats.size());
 	}

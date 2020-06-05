@@ -11,6 +11,11 @@ import it.progetto.Progetto_Esame.model.RecordTwitter;
 
 import it.progetto.Progetto_Esame.exceptions.*;
 import it.progetto.Progetto_Esame.utils.*;
+import it.progetto.Progetto_Esame.utils.Filter.CollectionFilter;
+import it.progetto.Progetto_Esame.utils.Filter.FilterSplitter;
+import it.progetto.Progetto_Esame.utils.Filter.NumericalFilter;
+import it.progetto.Progetto_Esame.utils.Filter.StringFilter;
+import it.progetto.Progetto_Esame.utils.JSON.CheckJSON;
 
 @Service
 public class FilterServiceImpl implements FilterService{
@@ -21,7 +26,7 @@ public class FilterServiceImpl implements FilterService{
 		ArrayList<RecordTwitter> tweets = RecordService.getTweets();
 		
 		try {
-			ControlloJSON.controllo(json);
+			CheckJSON.check(json);
 		}catch(InvalidJSONException e){
 			filteredJSON.add((new RecordTwitter(e.toString())));
 			return filteredJSON;
@@ -42,7 +47,7 @@ public class FilterServiceImpl implements FilterService{
 				try {
 					Object record_value = m.invoke(record);
 					try {
-						ControlloTipo.controllo(record_value, value);
+						CheckType.check(record_value, value);
 					} catch (InvalidTypeException e) {
 						filteredJSON.add(new RecordTwitter(e.toString()));			
 						break;

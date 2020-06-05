@@ -7,7 +7,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 import it.progetto.Progetto_Esame.model.RecordTwitter;
-import it.progetto.Progetto_Esame.utils.RimuoviTag;
+import it.progetto.Progetto_Esame.utils.RemoveTag;
 
 public class RecordService {
 	private static ArrayList<RecordTwitter> tweets= new ArrayList<>();
@@ -28,7 +28,7 @@ public class RecordService {
             tweet.setLike((Long)((JSONObject) o).get("favorite_count"));
             tweet.setRetweet((Long)((JSONObject) o).get("retweet_count"));
             tweet.setText((String)((JSONObject) o).get("text"));
-            tweet.setDevice(RimuoviTag.rimuovi((String) (((JSONObject) o).get("source"))));
+            tweet.setDevice(RemoveTag.remove((String) (((JSONObject) o).get("source"))));
             JSONArray hashtags = (JSONArray)((JSONObject) (((JSONObject) o).get("entities"))).get("hashtags");
             tweet.setHashtags(hashtags.size());
             tweets.add(tweet);
