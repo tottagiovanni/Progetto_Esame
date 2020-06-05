@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
+import io.micrometer.core.instrument.Statistic;
 import it.progetto.Progetto_Esame.exceptions.InvalidTypeException;
 import it.progetto.Progetto_Esame.model.RecordTwitter;
 import it.progetto.Progetto_Esame.model.StatsTwitter;
@@ -55,7 +56,7 @@ public class StatsServiceImpl implements StatsService {
 			}
 		}
 
-		StatsTwitter stats_twitter = new StatsTwitter(field, Statistics.avg(stats), Statistics.min(stats), Statistics.max(stats), Statistics.sum(stats), (long)Statistics.count(stats));
+		StatsTwitter stats_twitter = new StatsTwitter(field, Statistics.avg(stats), Statistics.min(stats), Statistics.max(stats), Statistics.sum(stats), (long)Statistics.count(stats), Statistics.standardDeviation(stats), Statistics.moda(stats));
 		
 		return stats_twitter;
 	}

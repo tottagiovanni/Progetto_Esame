@@ -56,24 +56,34 @@ public class Statistics {
 		return stats.size();			
 	}
 	
-	/*public static Long moda(ArrayList<Long> stats) {
+	public static Long moda(ArrayList<Long> stats) {
 		Long cont = 0L;
 		ArrayList<Long> val = new ArrayList<Long>();
 		
-		for(int i = 0; i < stats.size()-2; i++) {
-			
+		Long max = 0L, max_occ = 0L;
+		for(int i = 0; i < stats.size()-1; i++) {
+			cont = 1L;
+			for (int j = 0; j < stats.size()-1; j++) {
+				if (stats.get(i) == stats.get(j) && i != j)
+					cont++;
+			}
+			val.add(cont);
+			max = max(val);
+			if (max == cont)	
+				max_occ = stats.get(i);
 		}
 		
-	}*/
+		return max_occ;
+	}
 	
-	/*public static double standardDeviation(ArrayList<Long> stats) {
+	public static double standardDeviation(ArrayList<Long> stats) {
 		Long media = avg(stats);
-		Long sum = 0L;
+		double sum = 0;
 		
 		for (Long stat: stats)
-			sum += ((stat - media)^2);
+			sum += (Math.pow((stat - media) ,2));
 		
 		return Math.sqrt(sum/stats.size());
-	}*/
+	}
 	
 }
