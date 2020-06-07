@@ -1,15 +1,51 @@
 package it.progetto.Progetto_Esame.model;
 
+/**
+ * <p>
+ * 	<b>Classe</b> <i>StatsTwitter</i> per la creazione di oggetti StatsTwitter
+ * </p>
+ * @author Saraceno Alberto Zaccaria
+ * @author Totta Giovanni
+ * @version 1.0
+ */
 public class StatsTwitter {
+	/**
+	 * Indica il campo sul quale calcolare le statistiche
+	 */
 	private String field;
+	/**
+	 * Indica la media dei valori
+	 */
 	private Long average;
+	/**
+	 * Indica il minimo tra i valori
+	 */
 	private Long min;
+	/**
+	 * Indica il massimo tra i valori
+	 */
 	private Long max;
+	/**
+	 * Indica la somma dei valori
+	 */
 	private Long sum;
+	/**
+	 * Indica il numero di tweet analizzati
+	 */
 	private Long count;
+	/**
+	 * Indica la deviazione standard dei valori
+	 */
 	private double standardDeviation;
+	/**
+	 * Indica la moda dei valori
+	 */
 	private Long moda;
 	
+	/**
+	 * Costruttore
+	 * @param field
+	 */
 	public StatsTwitter(String field) {
 		super();
 		this.field = field;
