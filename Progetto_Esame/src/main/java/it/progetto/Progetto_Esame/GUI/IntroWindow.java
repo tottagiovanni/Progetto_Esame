@@ -54,7 +54,7 @@ public class IntroWindow {
         		try {
         			RecordService rs = new RecordService(data);
         			JOptionPane.showMessageDialog(null, "Tweet caricati con successo");
-        			redirect(introFrame);
+        			redirect();
         		}catch(NullPointerException e1){
         			System.out.println(e1.toString());
         			JOptionPane.showMessageDialog(null, "Ultima ricerca non disponibile");
@@ -74,7 +74,7 @@ public class IntroWindow {
 					
 				}
             	msgLabel.setText("Hai cercato: " + searchText.getText());
-            	redirect(introFrame);
+            	redirect();
             }
         };
         
@@ -96,7 +96,7 @@ public class IntroWindow {
         	});
 	}
 	
-	private static void redirect(JFrame introFrame) {
+	private static void redirect() {
 		TweetsWindow.show();
 	}
 }

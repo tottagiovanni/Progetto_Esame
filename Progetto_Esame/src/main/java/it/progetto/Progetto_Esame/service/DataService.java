@@ -8,12 +8,34 @@ import org.springframework.stereotype.Service;
 
 import it.progetto.Progetto_Esame.utils.JSON.PersistenceJSON;
 
-
+/**
+ * <p>
+ * 	<b>Classe</b> <i>DataService</i> per il salvataggio dei dati e la scrittura su file locale
+ * </p>
+ * @author Saraceno Alberto Zaccaria
+ * @author Totta Giovanni
+ * @see it.progetto.Progetto_Esame.exceptions
+ * @see it.progetto.Progetto_Esame.utils
+ * @version 1.0
+ */
 @Service
 public class DataService {
+	
+	/**
+	 * Costruttore di default della classe
+	 */
 	public DataService() {
 	}
 	
+	
+	/**
+	 * Metodo per il salvataggio dei tweets ottenuti dalla richiesta e la scrittura su file
+	 * @param query url della richiesta effettuata alle api di Twitter
+	 * @return insieme dei tweets in formato <code>String</code>
+	 * @throws IOException per le query errate
+	 * @throws IOException per le query errate e per la mancata apertura del file
+	 * @see it.progetto.Progetto_Esame.utils.JSON.PersistenceJSON#writeJSONFile(String)
+	 */
 	public static String setTweets(URL query){
 		
 	    URLConnection yc = null;
@@ -45,6 +67,11 @@ public class DataService {
 	    return data;
 	}  
 	
+	/**
+	 * Metodo per l'estrazione dell'ultima ricerca da file locale
+	 * @return insieme dei tweets in formato <code>String</code>
+	 * @throws FileNotFoundException per il file locale non trovato
+	 */
 	public static String setLocalTweets() {
 		String data = "";
 		try {

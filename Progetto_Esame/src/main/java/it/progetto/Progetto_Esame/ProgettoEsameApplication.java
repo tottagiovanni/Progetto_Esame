@@ -20,7 +20,7 @@ public class ProgettoEsameApplication {
 	/**
 	 * Avvia l'applicazione
 	 * @param args parametro di default del main
-	 * @see it.progetto.Progetto_Esame.GUI.IntroWindow#show
+	 * @see it.progetto.Progetto_Esame.GUI.IntroWindow#show()
 	 */
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = new SpringApplicationBuilder(ProgettoEsameApplication.class).headless(false).run(args);

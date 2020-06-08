@@ -17,9 +17,35 @@ import it.progetto.Progetto_Esame.utils.Filter.NumericalFilter;
 import it.progetto.Progetto_Esame.utils.Filter.StringFilter;
 import it.progetto.Progetto_Esame.utils.JSON.CheckJSON;
 
+/**
+ * <p>
+ * 	<b>Classe</b> <i>FilterServiceImpl</i> che implementa l'interfaccia FilterService
+ * </p>
+ * @author Saraceno Alberto Zaccaria
+ * @author Totta Giovanni
+ * @version 1.0
+ */
 @Service
 public class FilterServiceImpl implements FilterService{
+	/**
+	 * Indica l'ArrayList di tweets filtrati
+	 */
 	private static ArrayList<RecordTwitter> filteredJSON = new ArrayList<RecordTwitter>();
+	/**
+	 * Metodo che applica i filtri, restituendo l'ArrayList filtrato
+	 * @param filtro stringa contenente il filtro da applicare
+	 * @return ArrayList di RecordTwitter
+	 * @see it.progetto.Progetto_Esame.model.RecordTwitter
+	 * @see it.progetto.Progetto_Esame.utils
+	 * @see it.progetto.Progetto_Esame.service.RecordService#getTweets()
+	 * @throws InvalidJSONException in caso di JSON mal formato {@link it.progetto.Progetto_Esame.utils.JSON.CheckJSON#check(JSONObject)}
+	 * @throws InvalidTypeException in caso di tipo di dato errato {@link it.progetto.Progetto_Esame.utils.JSON.CheckType#check(Object, Object)}
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 */
 	public ArrayList<RecordTwitter> getFilterTweets(String filtro){
 		filteredJSON.clear();
 		JSONObject json = (JSONObject) JSONValue.parse(filtro);

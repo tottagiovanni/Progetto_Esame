@@ -4,21 +4,52 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import it.progetto.Progetto_Esame.exceptions.InvalidJSONException;
 import it.progetto.Progetto_Esame.exceptions.InvalidTypeException;
 import it.progetto.Progetto_Esame.model.RecordTwitter;
 import it.progetto.Progetto_Esame.model.StatsTwitter;
 import it.progetto.Progetto_Esame.utils.CheckType;
 import it.progetto.Progetto_Esame.utils.Statistics;
 
+/**
+ * <p>
+ * 	<b>Classe</b> <i>StatsServiceImpl</i> che implementa l'interfaccia StatsService
+ * </p>
+ * @author Saraceno Alberto Zaccaria
+ * @author Totta Giovanni
+ * @version 1.0
+ */
 @Service
 public class StatsServiceImpl implements StatsService {
+	/**
+	 * Metodo che restituisce le statistiche di un campo
+	 * @param field campo sul quale effettuare le statistiche
+	 * @return oggetto StatsTwitter contenente le statistiche
+	 * @see it.progetto.Progetto_Esame.service.StatsServiceImpl#getStats(String, ArrayList)
+	 * @see it.progetto.Progetto_Esame.service.RecordService#getTweets()
+	 */
 	public StatsTwitter getStats(String field) {
 		ArrayList<RecordTwitter> tweets = RecordService.getTweets();
 		return getStats(field, tweets);
 	}
-
+	
+	/**
+	 * Metodo che restituisce le statistiche di un campo, applicando i filtri (se presenti)
+	 * @param field campo sul quale effettuare le statistiche
+	 * @param tweets ArrayList dei tweets filtrat o di tutti i tweets (filtro nullo)
+	 * @return oggetto StatsTwitter contenente le statistiche
+	 * @see it.progetto.Progetto_Esame.model.StatsTwitter
+	 * @see it.progetto.Progetto_Esame.utils.Statistics
+	 * @throws InvalidTypeException in caso di tipo di dato errato {@link it.progetto.Progetto_Esame.utils.JSON.CheckType#check(Object, Object)}
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 */
 	@Override
 	public StatsTwitter getStats(String field, ArrayList<RecordTwitter> tweets) {
 		ArrayList<Long> stats = new ArrayList<Long>();
