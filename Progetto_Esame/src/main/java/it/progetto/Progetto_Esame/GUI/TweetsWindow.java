@@ -24,7 +24,7 @@ public class TweetsWindow {
 	public static void show() {
 		ArrayList<RecordTwitter> tweets = RecordService.getTweets();
 
-		JFrame tweetsFrame = new JFrame("PROVA");
+		JFrame tweetsFrame = new JFrame("TWEETS");
 		JPanel panel = new JPanel();
 
 		JScrollPane scrollPane = new JScrollPane(panel);

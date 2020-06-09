@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import it.progetto.Progetto_Esame.exceptions.*;
 import it.progetto.Progetto_Esame.model.*;
 import it.progetto.Progetto_Esame.utils.*;
+import it.progetto.Progetto_Esame.utils.Filter.NumericalFilter;
 
 
 /**
@@ -28,7 +29,7 @@ public class ProgettoEsameApplicationTests {
 	private RecordTwitter record;
 	
 	/**
-	 * Metodo per creazione oggetti e settaggio parametri
+	 * Metodo per creazione oggetti e settaggio parametri, viene eseguito prima dei test
 	 * @throws Exception
 	 * @see it.progetto.Progetto_Esame.model.RecordTwitter
 	 */
@@ -37,8 +38,13 @@ public class ProgettoEsameApplicationTests {
 		record = new RecordTwitter("123", "2020-05-20", "Giovanni Totta", "Prova test", 3000, 33, 12, "it", "Twitter for Android", 0);
 	}
 
+	/**
+	 * Metodo che viene eseguito alla fine di ogni test
+	 * @throws Exception
+	 */
 	@AfterEach
 	void tearDown() throws Exception {
+		System.out.println("Test terminato");
 	}
 	
 	/**
@@ -59,9 +65,14 @@ public class ProgettoEsameApplicationTests {
 				()->assertEquals(0, record.getHashtags()));
 	}
 	
+	/**
+	 * Metodo per testare il confronto numerico in base al filtro
+	 * @see it.progetto.Progetto_Esame.utils.Filter.NumericalFilter#compare(Object, Object, String)
+	 */
 	@Test
-	void test2() {
-		// TO DO
+	void testCompare() {
+		assertEquals(true, NumericalFilter.compare(12L, 1L, "$gt"));
+		assertEquals(false, NumericalFilter.compare(12L, 1L, "$lt"));
 	}
 	
 	/**
