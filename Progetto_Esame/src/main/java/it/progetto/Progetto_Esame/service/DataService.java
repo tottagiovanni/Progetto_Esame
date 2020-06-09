@@ -32,8 +32,6 @@ public class DataService {
 	 * Metodo per il salvataggio dei tweets ottenuti dalla richiesta e la scrittura su file
 	 * @param query url della richiesta effettuata alle api di Twitter
 	 * @return insieme dei tweets in formato <code>String</code>
-	 * @throws IOException per le query errate
-	 * @throws IOException per le query errate e per la mancata apertura del file
 	 * @see it.progetto.Progetto_Esame.utils.JSON.PersistenceJSON#writeJSONFile(String)
 	 */
 	public static String setTweets(URL query){
@@ -70,7 +68,6 @@ public class DataService {
 	/**
 	 * Metodo per l'estrazione dell'ultima ricerca da file locale
 	 * @return insieme dei tweets in formato <code>String</code>
-	 * @throws FileNotFoundException per il file locale non trovato
 	 */
 	public static String setLocalTweets() {
 		String data = "";

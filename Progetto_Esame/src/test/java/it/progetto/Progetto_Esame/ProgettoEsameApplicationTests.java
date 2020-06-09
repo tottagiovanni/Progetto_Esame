@@ -10,12 +10,28 @@ import it.progetto.Progetto_Esame.exceptions.*;
 import it.progetto.Progetto_Esame.model.*;
 import it.progetto.Progetto_Esame.utils.*;
 
+
+/**
+ * <p>
+ * 	<b>Classe</b> <i>ProgettoEsameApllicationTests</i> per i vari JUnit test
+ * </p>
+ * @author Saraceno Alberto Zaccaria
+ * @author Totta Giovanni
+ * @version 1.0
+ */
 @SpringBootTest(classes = ProgettoEsameApplication.class)
+public class ProgettoEsameApplicationTests {
 
-class ProgettoEsameApplicationTests {
-
+	/**
+	 * Indica un record
+	 */
 	private RecordTwitter record;
 	
+	/**
+	 * Metodo per creazione oggetti e settaggio parametri
+	 * @throws Exception
+	 * @see it.progetto.Progetto_Esame.model.RecordTwitter
+	 */
 	@BeforeEach
 	void setUp() throws Exception {
 		record = new RecordTwitter("123", "2020-05-20", "Giovanni Totta", "Prova test", 3000, 33, 12, "it", "Twitter for Android", 0);
@@ -25,6 +41,10 @@ class ProgettoEsameApplicationTests {
 	void tearDown() throws Exception {
 	}
 	
+	/**
+	 * Metodo per testare la creazione di oggetti RecordTwitter
+	 * @see it.progetto.Progetto_Esame.model.RecordTwitter
+	 */
 	@Test
 	void testRecord() {
 		assertAll("valori", ()->assertEquals("123", record.getId_post()),
@@ -44,6 +64,11 @@ class ProgettoEsameApplicationTests {
 		// TO DO
 	}
 	
+	/**
+	 * Metodo per testare l'eccezione di tipo errato
+	 * @see it.progetto.Progetto_Esame.exceptions.InvalidTypeException
+	 * @see it.progetto.Progetto_Esame.utils.CheckType#check(Object, Object)
+	 */
 	@Test
 	void testException() {
 		Object value = 123L;

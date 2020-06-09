@@ -67,12 +67,11 @@ public class Controller {
 	 * @param field campo sul quale effettuare le statistiche
 	 * @param filtro filtro da applicare alla ricerca
 	 * @return json contenente le statistiche
-	 * @throws eccezione generata da una richiesta errata
 	 * @see it.progetto.Progetto_Esame.service.StatsService#getStats(String)
 	 * @see it.progetto.Progetto_Esame.service.StatsService#getStats(String, ArrayList)
 	 * @see it.progetto.Progetto_Esame.service.FilterService#getFilterTweets(String)
 	 * @see it.progetto.Progetto_Esame.exceptions.InvalidRequestException
-	 * @see it.progetto.Progetto_Esame.utils.CheckRequest#check(field)
+	 * @see it.progetto.Progetto_Esame.utils.CheckRequest#check(String)
 	 */
 	@RequestMapping(value = "/stats", method = RequestMethod.GET)
 	public ResponseEntity<Object> getStats(@RequestParam(name = "field", defaultValue = "") String field, @RequestParam(name ="filter", required=false) String filtro){
@@ -91,7 +90,7 @@ public class Controller {
 	
 	/**
 	 * Restituisce i metadati dei tweets (GET)
-	 * @see it.progetto.Progetto_Esame.model.MetadataService#getMetadata()
+	 * @see it.progetto.Progetto_Esame.service.MetadataService#getMetadata()
 	 * @return json contenente i metadati
 	 */
 	@RequestMapping(value = "/metadata", method = RequestMethod.GET)
@@ -116,11 +115,10 @@ public class Controller {
 	 * @param field campo sul quale effettuare le statistiche
 	 * @param filtro filtro da applicare alla ricerca
 	 * @return json contenente le statistiche
-	 * @throws eccezione generata da una richiesta errata
 	 * @see it.progetto.Progetto_Esame.service.StatsService#getStats(String, ArrayList)
 	 * @see it.progetto.Progetto_Esame.service.FilterService#getFilterTweets(String)
 	 * @see it.progetto.Progetto_Esame.exceptions.InvalidRequestException
-	 * @see it.progetto.Progetto_Esame.utils.CheckRequest#check(field)
+	 * @see it.progetto.Progetto_Esame.utils.CheckRequest#check(String)
 	 */
 	@RequestMapping(value = "/stats", method = RequestMethod.POST)
 	public ResponseEntity<Object> getPostTweets(@RequestParam(name = "field", defaultValue = "") String field, @RequestBody String filtro){

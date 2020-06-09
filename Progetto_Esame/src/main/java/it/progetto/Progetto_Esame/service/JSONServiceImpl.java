@@ -20,7 +20,7 @@ public class JSONServiceImpl implements JSONService{
 	/**
 	 * Implementazione del metodo che restituisce tutti i tweets
 	 * @see it.progetto.Progetto_Esame.service.JSONServiceImpl#getAllTweets()
-	 * @see it.progetto.Progetto_Esame.model.RecordService
+	 * @see it.progetto.Progetto_Esame.service.RecordService
 	 * @return ArrayList di RecordTwitter
 	 */
 	public ArrayList<RecordTwitter> getAllTweets() {

@@ -45,7 +45,7 @@ public class MetadataTwitter {
 	
 	/**
 	 * Metodo set per l'attributo name
-	 * @param name
+	 * @param name nome campo
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -61,7 +61,7 @@ public class MetadataTwitter {
 
 	/**
 	 * Metodo set per l'attributo description
-	 * @param description
+	 * @param description descrizione campo
 	 */
  	public void setDescription(String description) {
 		this.description = description;
@@ -77,7 +77,7 @@ public class MetadataTwitter {
 	
 	/**
 	 * Metodo set per l'attributo type
-	 * @param type
+	 * @param type tipo campo
 	 */
 	public void setType(String type) {
 		this.type = type;

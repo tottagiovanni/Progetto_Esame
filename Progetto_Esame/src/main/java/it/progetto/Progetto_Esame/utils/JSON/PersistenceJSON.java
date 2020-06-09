@@ -22,7 +22,6 @@ public class PersistenceJSON {
 	/**
 	 * Metodo che scrive il json contenente la ricerca su file
 	 * @param JSONString Stringa contenente i tweets ricercati
-	 * @throws IOException se ci sono problemi di apertura del file in scrittura
 	 */
 	public static void writeJSONFile(String JSONString) {
 		try (FileWriter file = new FileWriter("ultima_ricerca.json")) {

@@ -18,6 +18,7 @@ public class JSONValues {
 	/**
 	 * Metodo che restituisce i valori dei campi del JSON
 	 * @param json json contenente i campi da filtrare
+	 * @param keys nomi dei campi da filtrare
 	 * @return ArrayList con i valori dei campi di tipo <code>Object</code>
 	 */
 	public static ArrayList<Object> getValues(ArrayList<String> keys, JSONArray json){

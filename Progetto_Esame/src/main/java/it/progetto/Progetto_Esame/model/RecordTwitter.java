@@ -104,7 +104,7 @@ public class RecordTwitter {
 
 	/**
 	 * Metodo set per l'attributo followers
-	 * @param followers
+	 * @param followers followers dell'autore del tweet
 	 */
 	public void setFollowers(long followers) {
 		this.followers = followers;
@@ -120,7 +120,7 @@ public class RecordTwitter {
 	
 	/**
 	 * Metodo set per l'attributo id_post
-	 * @param id_post
+	 * @param id_post id del tweet
 	 */
 	public void setId_post(String id_post) {
 		this.id_post = id_post;
@@ -136,7 +136,7 @@ public class RecordTwitter {
 
 	/**
 	 * Metodo set per l'attributo date
-	 * @param date
+	 * @param date data del tweet
 	 */
 	public void setDate(String date) {
 		this.date = date;
@@ -152,7 +152,7 @@ public class RecordTwitter {
 	
 	/**
 	 * Metodo set per l'attributo name
-	 * @param name
+	 * @param name nome dell'autore del tweet
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -168,7 +168,7 @@ public class RecordTwitter {
 	
 	/**
 	 * Metodo set per l'attributo text
-	 * @param text
+	 * @param text testo del tweet
 	 */
 	public void setText(String text) {
 		this.text = text;
@@ -184,7 +184,7 @@ public class RecordTwitter {
 	
 	/**
 	 * Metodo set per l'attributo like
-	 * @param like
+	 * @param like like al tweet
 	 */
 	public void setLike(long like) {
 		this.like = like;
@@ -200,7 +200,7 @@ public class RecordTwitter {
 	
 	/**
 	 * Metodo set per l'attributo retweet
-	 * @param retweet
+	 * @param retweet retweet del tweet
 	 */
 	public void setRetweet(long retweet) {
 		this.retweet = retweet;
@@ -216,7 +216,7 @@ public class RecordTwitter {
 	
 	/**
 	 * Metodo set per l'attributo nation
-	 * @param nation
+	 * @param nation nazione del tweet
 	 */
 	public void setNation(String nation) {
 		this.nation = nation;
@@ -232,7 +232,7 @@ public class RecordTwitter {
 	
 	/**
 	 * Metodo set per l'attributo device
-	 * @param device
+	 * @param device dispositivo dell'autore del tweet
 	 */
 	public void setDevice(String device) {
 		this.device = device;
@@ -248,7 +248,7 @@ public class RecordTwitter {
 
 	/**
 	 * Metodo set per l'attributo hashtags
-	 * @param hashtags
+	 * @param hashtags numero di hashtags del tweet
 	 */
 	public void setHashtags(long hashtags) {
 		this.hashtags = hashtags;

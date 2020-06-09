@@ -38,13 +38,6 @@ public class FilterServiceImpl implements FilterService{
 	 * @see it.progetto.Progetto_Esame.model.RecordTwitter
 	 * @see it.progetto.Progetto_Esame.utils
 	 * @see it.progetto.Progetto_Esame.service.RecordService#getTweets()
-	 * @throws InvalidJSONException in caso di JSON mal formato {@link it.progetto.Progetto_Esame.utils.JSON.CheckJSON#check(JSONObject)}
-	 * @throws InvalidTypeException in caso di tipo di dato errato {@link it.progetto.Progetto_Esame.utils.JSON.CheckType#check(Object, Object)}
-	 * @throws IllegalAccessException
-	 * @throws IllegalArgumentException
-	 * @throws InvocationTargetException
-	 * @throws NoSuchMethodException se il metodo non è presente tra quelli di RecordTwitter
-	 * @throws SecurityException
 	 */
 	public ArrayList<RecordTwitter> getFilterTweets(String filtro){
 		filteredJSON.clear();

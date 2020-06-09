@@ -32,15 +32,11 @@ public class CollectionFilter {
 	/**
 	 * Metodo che applica i filtri, restituendo l'ArrayList filtrato
 	 * @param op operatore che indica il tipo di filtro
+	 * @param json json contenente i dati da filtrare
 	 * @return ArrayList di RecordTwitter
 	 * @see it.progetto.Progetto_Esame.model.RecordTwitter
 	 * @see it.progetto.Progetto_Esame.utils
 	 * @see it.progetto.Progetto_Esame.service.RecordService#getTweets()
-	 * @throws IllegalAccessException
-	 * @throws IllegalArgumentException
-	 * @throws InvocationTargetException
-	 * @throws NoSuchMethodException se il metodo non è presente tra quelli di RecordTwitter
-	 * @throws SecurityException
 	 */
 	public static ArrayList<RecordTwitter> compare(String op, JSONArray json) {
 		filteredJSON.clear();

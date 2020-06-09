@@ -44,7 +44,7 @@ public class StatsTwitter {
 	
 	/**
 	 * Costruttore che inizializza l'attributo field della classe
-	 * @param field
+	 * @param field nome del campo
 	 */
 	public StatsTwitter(String field) {
 		super();
@@ -84,7 +84,7 @@ public class StatsTwitter {
 	
 	/**
 	 * Metodo set per l'attributo field
-	 * @param field
+	 * @param field nome del campo
 	 */
 	public void setField(String field) {
 		this.field = field;
@@ -100,7 +100,7 @@ public class StatsTwitter {
 	
 	/**
 	 * Metodo set per l'attributo average
-	 * @param average
+	 * @param average media dei valori
 	 */
 	public void setAverage(Long average) {
 		this.average = average;
@@ -116,7 +116,7 @@ public class StatsTwitter {
 	
 	/**
 	 * Metodo set per l'attributo min
-	 * @param min
+	 * @param min minimo dei valori
 	 */
 	public void setMin(Long min) {
 		this.min = min;
@@ -132,7 +132,7 @@ public class StatsTwitter {
 	
 	/**
 	 * Metodo set per l'attributo max
-	 * @param max
+	 * @param max massimo dei valori
 	 */
 	public void setMax(Long max) {
 		this.max = max;
@@ -148,7 +148,7 @@ public class StatsTwitter {
 	
 	/**
 	 * Metodo set per l'attributo sum
-	 * @param sum
+	 * @param sum somma dei valori
 	 */
 	public void setSum(Long sum) {
 		this.sum = sum;
@@ -164,7 +164,7 @@ public class StatsTwitter {
 	
 	/**
 	 * Metodo set per l'attributo count
-	 * @param count
+	 * @param count numero di tweets
 	 */
 	public void setCount(Long count) {
 		this.count = count;
@@ -180,7 +180,7 @@ public class StatsTwitter {
 	
 	/**
 	 * Metodo set per l'attributo standardDeviation
-	 * @param standardDeviation
+	 * @param standardDeviation deviazione standard dei valori
 	 */
 	public void setStandardDeviation(double standardDeviation) {
 		this.standardDeviation = standardDeviation;
@@ -196,7 +196,7 @@ public class StatsTwitter {
 
 	/**
 	 * Metodo set per l'attributo moda
-	 * @param moda
+	 * @param moda moda dei valori
 	 */
 	public void setModa(Long moda) {
 		this.moda = moda;

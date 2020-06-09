@@ -43,12 +43,6 @@ public class StatsServiceImpl implements StatsService {
 	 * @return oggetto StatsTwitter contenente le statistiche
 	 * @see it.progetto.Progetto_Esame.model.StatsTwitter
 	 * @see it.progetto.Progetto_Esame.utils.Statistics
-	 * @throws InvalidTypeException in caso di tipo di dato errato {@link it.progetto.Progetto_Esame.utils.JSON.CheckType#check(Object, Object)}
-	 * @throws IllegalAccessException
-	 * @throws IllegalArgumentException
-	 * @throws InvocationTargetException
-	 * @throws NoSuchMethodException se il metodo non è presente tra quelli di RecordTwitter
-	 * @throws SecurityException
 	 */
 	@Override
 	public StatsTwitter getStats(String field, ArrayList<RecordTwitter> tweets) {
