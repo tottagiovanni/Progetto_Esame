@@ -7,7 +7,21 @@ import java.util.Set;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * <p>
+ * 	<b>Classe</b> <i>JSONKeys</i> per ottenere i nomi dei campi presenti nel JSON
+ * </p>
+ * @author Saraceno Alberto Zaccaria
+ * @author Totta Giovanni
+ * @version 1.0
+ */
 public class JSONKeys { 
+	
+	/**
+	 * Metodo che restituisce i nomi dei campi del JSON
+	 * @param json json contenente i campi da filtrare
+	 * @return ArrayList con i nomi dei campi di tipo <code>String</code>
+	 */
 	public static ArrayList<String> getKeys(JSONArray json){
 		Iterator<Object> iterator = json.iterator();
 		

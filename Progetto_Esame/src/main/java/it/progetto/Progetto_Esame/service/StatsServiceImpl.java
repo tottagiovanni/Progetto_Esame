@@ -47,7 +47,7 @@ public class StatsServiceImpl implements StatsService {
 	 * @throws IllegalAccessException
 	 * @throws IllegalArgumentException
 	 * @throws InvocationTargetException
-	 * @throws NoSuchMethodException
+	 * @throws NoSuchMethodException se il metodo non è presente tra quelli di RecordTwitter
 	 * @throws SecurityException
 	 */
 	@Override

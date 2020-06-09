@@ -18,7 +18,6 @@ import it.progetto.Progetto_Esame.utils.RemoveTag;
  * @author Totta Giovanni
  * @version 1.0
  */
-@Service
 public class RecordService {
 	/**
 	 * Indica un ArrayList di RecordTwitter

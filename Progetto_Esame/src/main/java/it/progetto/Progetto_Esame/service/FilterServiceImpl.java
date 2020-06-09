@@ -43,7 +43,7 @@ public class FilterServiceImpl implements FilterService{
 	 * @throws IllegalAccessException
 	 * @throws IllegalArgumentException
 	 * @throws InvocationTargetException
-	 * @throws NoSuchMethodException
+	 * @throws NoSuchMethodException se il metodo non è presente tra quelli di RecordTwitter
 	 * @throws SecurityException
 	 */
 	public ArrayList<RecordTwitter> getFilterTweets(String filtro){

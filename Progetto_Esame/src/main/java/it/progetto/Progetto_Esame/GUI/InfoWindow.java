@@ -12,8 +12,20 @@ import javax.swing.JPanel;
 import it.progetto.Progetto_Esame.model.RecordTwitter;
 import it.progetto.Progetto_Esame.service.RecordService;
 
+/**
+ * <p>
+ * 	<b>Classe</b> <i>InfoWindow</i> per permettere all'utente di visualizzare i dettagli di uno specifico tweet
+ * </p>
+ * @author Saraceno Alberto Zaccaria
+ * @author Totta Giovanni
+ * @version 1.0
+ */
 public class InfoWindow {
-	static public void show(String id_post) {
+	/**
+	 * Metodo che consente di visualizzare i dettagli di un tweet tramite il suo id
+	 * @param id_post id che identifica il tweet
+	 */
+	public static void show(String id_post) {
 			JFrame infoFrame = new JFrame("Informazioni su "+id_post);
 			infoFrame.getContentPane().setLayout(new GridBagLayout());
 			
@@ -64,6 +76,9 @@ public class InfoWindow {
 	        infoFrame.setResizable(true);
 	        
 	        chiudi.addActionListener(new ActionListener() {
+	        	/**
+	        	 * Metodo che chiude la finestra se viene premuto il bottone "CHIUDI"
+	        	 */
 	        	public void actionPerformed(ActionEvent e) {
 	        		infoFrame.dispose();
 	        	}

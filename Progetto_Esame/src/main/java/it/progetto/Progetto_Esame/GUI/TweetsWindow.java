@@ -9,7 +9,18 @@ import javax.swing.*;
 import it.progetto.Progetto_Esame.model.RecordTwitter;
 import it.progetto.Progetto_Esame.service.RecordService;
 
+/**
+ * <p>
+ * 	<b>Classe</b> <i>TweetsWindow</i> per permettere all'utente di visualizzare i tweets ricercati
+ * </p>
+ * @author Saraceno Alberto Zaccaria
+ * @author Totta Giovanni
+ * @version 1.0
+ */
 public class TweetsWindow {
+	/**
+	 * Metodo che consente la visualizzazione di tutti i tweets ricercati (argomento o ultima ricerca)
+	 */
 	public static void show() {
 		ArrayList<RecordTwitter> tweets = RecordService.getTweets();
 
@@ -38,6 +49,10 @@ public class TweetsWindow {
 				panel.add(buttons[i]);
 
 				buttons[i].addActionListener(new ActionListener() {
+					/**
+					 * Metodo che permette di selezionare un post per visualizzarne i dettagli
+					 * @see it.progetto.Progetto_Esame.GUI.InfoWindow#show(String)
+					 */
 					public void actionPerformed(ActionEvent e) {
 						InfoWindow.show(tweet.getId_post());
 					}
@@ -59,15 +74,19 @@ public class TweetsWindow {
 		tweetsFrame.setVisible(true);
 
 		chiudi.addActionListener(new ActionListener() {
+			/**
+			 * Metodo che chiude la finestra se viene premuto il bottone "CHIUDI"
+			 */
 			public void actionPerformed(ActionEvent e) {
-				// System.exit(0);
 				tweetsFrame.dispose();
 			}
 		});
 
 		tweetsFrame.addWindowListener(new WindowAdapter() {
+			/**
+			 * Metodo che chiude la finestra
+			 */
 			public void windowClosing(WindowEvent we) {
-				// System.exit(0);
 				tweetsFrame.dispose();
 			}
 		});
