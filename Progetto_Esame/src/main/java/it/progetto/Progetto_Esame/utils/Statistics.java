@@ -34,14 +34,14 @@ public class Statistics {
 	 * Metodo che calcola il minimo tra i valori del campo
 	 * @param stats ArrayList contenente i valori
 	 * @return <code>Long</code> minimo
-	 * @throws NullPointerException se l'ArrayList è vuoto
+	 * @throws IndexOutOfBoundsException se l'ArrayList è vuoto
 	 */
 	public static Long min(ArrayList<Long> stats){
 		Long min = 0L;
 		try {
 			min = stats.get(0);
 		}
-		catch(NullPointerException e) {
+		catch(IndexOutOfBoundsException e) {
 			System.out.println(e.toString());
 		}
 		
@@ -55,14 +55,14 @@ public class Statistics {
 	 * Metodo che calcola il massimo tra i valori del campo
 	 * @param stats ArrayList contenente i valori
 	 * @return <code>Long</code> massimo
-	 * @throws NullPointerException se l'ArrayList è vuoto
+	 * @throws IndexOutOfBoundsException se l'ArrayList è vuoto
 	 */
 	public static Long max(ArrayList<Long> stats){
 		Long max = 0L;
 		try {
 			max = stats.get(0);
 		}
-		catch(NullPointerException e) {
+		catch(IndexOutOfBoundsException e) {
 			System.out.println(e.toString());
 		}
 		

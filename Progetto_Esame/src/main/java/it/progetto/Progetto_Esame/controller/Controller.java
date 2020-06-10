@@ -1,6 +1,8 @@
 package it.progetto.Progetto_Esame.controller;
 
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.progetto.Progetto_Esame.exceptions.InvalidRequestException;
+import it.progetto.Progetto_Esame.model.RecordTwitter;
+import it.progetto.Progetto_Esame.model.StatsTwitter;
 import it.progetto.Progetto_Esame.service.FilterService;
 import it.progetto.Progetto_Esame.service.JSONService;
 import it.progetto.Progetto_Esame.service.MetadataService;
@@ -56,8 +60,13 @@ public class Controller {
 	 */
 	@RequestMapping(value = "/tweets", method = RequestMethod.GET)
 	public ResponseEntity<Object> getTweets(@RequestParam(name = "filter", required = false) String filtro){
-		if (filtro != null)
-			return new ResponseEntity<>(filter.getFilterTweets(filtro), HttpStatus.OK);
+		if (filtro != null) {
+			ArrayList<RecordTwitter> res = filter.getFilterTweets(filtro);
+			if (!(res.isEmpty()) && (res.get(0).getId_post()) == null)
+				return new ResponseEntity<>(res.get(0).getText(), HttpStatus.BAD_REQUEST);
+			else
+				return new ResponseEntity<>(res, HttpStatus.OK);
+		}
 		else
 			return new ResponseEntity<>(twitter.getAllTweets(), HttpStatus.OK);
 	}
@@ -81,10 +90,19 @@ public class Controller {
 			return new ResponseEntity<>(e.toString(),HttpStatus.BAD_REQUEST);
 		}
 		
-		if(filtro == null)
-			return new ResponseEntity<>(stats.getStats(field), HttpStatus.OK);
+		if(filtro == null) {
+			StatsTwitter res = stats.getStats(field);
+			if (res.getMin() == null)
+				return new ResponseEntity<>(res.getField(), HttpStatus.BAD_REQUEST);
+			else 
+				return new ResponseEntity<>(stats.getStats(field), HttpStatus.OK);
+		}
 		else {
-			return new ResponseEntity<>(stats.getStats(field, filter.getFilterTweets(filtro)), HttpStatus.OK);
+			StatsTwitter res = stats.getStats(field, filter.getFilterTweets(filtro));
+			if (res.getMin() == null)
+				return new ResponseEntity<>(res.getField(), HttpStatus.BAD_REQUEST);
+			else
+				return new ResponseEntity<>(res, HttpStatus.OK);
 		}
 	}
 	
@@ -107,7 +125,11 @@ public class Controller {
 	 */
 	@RequestMapping(value = "/tweets", method = RequestMethod.POST)
 	public ResponseEntity<Object> getPostTweets(@RequestBody String filtro){
-		return new ResponseEntity<>(filter.getFilterTweets(filtro), HttpStatus.OK);
+		ArrayList<RecordTwitter> res = filter.getFilterTweets(filtro);
+		if (!(res.isEmpty()) && (res.get(0).getId_post()) == null)
+			return new ResponseEntity<>(res.get(0).getText(), HttpStatus.BAD_REQUEST);
+		else
+			return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 	
 	/**
@@ -128,6 +150,10 @@ public class Controller {
 			return new ResponseEntity<>(e.toString(),HttpStatus.BAD_REQUEST);
 		}
 		
-		return new ResponseEntity<>(stats.getStats(field, filter.getFilterTweets(filtro)), HttpStatus.OK);
+		StatsTwitter res = stats.getStats(field, filter.getFilterTweets(filtro));
+		if (res.getMin() == null)
+			return new ResponseEntity<>(res.getField(), HttpStatus.BAD_REQUEST);
+		else
+			return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 }

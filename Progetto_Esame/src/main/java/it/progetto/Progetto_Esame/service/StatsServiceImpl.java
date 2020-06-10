@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import it.progetto.Progetto_Esame.exceptions.EmptyRecordException;
 import it.progetto.Progetto_Esame.exceptions.InvalidJSONException;
 import it.progetto.Progetto_Esame.exceptions.InvalidTypeException;
 import it.progetto.Progetto_Esame.model.RecordTwitter;
 import it.progetto.Progetto_Esame.model.StatsTwitter;
+import it.progetto.Progetto_Esame.utils.CheckRecord;
 import it.progetto.Progetto_Esame.utils.CheckType;
 import it.progetto.Progetto_Esame.utils.Statistics;
 
@@ -47,7 +49,7 @@ public class StatsServiceImpl implements StatsService {
 	@Override
 	public StatsTwitter getStats(String field, ArrayList<RecordTwitter> tweets) {
 		ArrayList<Long> stats = new ArrayList<Long>();
-
+			
 		for (RecordTwitter tweet : tweets) {
 			Method m;
 			try {
@@ -56,8 +58,15 @@ public class StatsServiceImpl implements StatsService {
 					Object record_value = m.invoke(tweet);
 					
 					try {
+						CheckRecord.check(record_value);
+					} catch (EmptyRecordException e) {
+						return new StatsTwitter(e.toString());
+					}
+						
+					
+					try {
 						Object tmp = 0L; 
-						CheckType.check(record_value, tmp);
+						CheckType.check(tmp, record_value);
 					} catch (InvalidTypeException e) {
 						return new StatsTwitter(e.toString());
 					}
@@ -82,6 +91,9 @@ public class StatsServiceImpl implements StatsService {
 
 		StatsTwitter stats_twitter = new StatsTwitter(field, Statistics.avg(stats), Statistics.min(stats), Statistics.max(stats), Statistics.sum(stats), (long)Statistics.count(stats), Statistics.standardDeviation(stats), Statistics.mode(stats));
 		
+		if (!tweets.isEmpty() && tweets.get(0).getId_post() == null)
+			stats_twitter.setCount(0L);
+			
 		return stats_twitter;
 	}
 
