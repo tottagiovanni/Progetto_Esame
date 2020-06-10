@@ -27,6 +27,8 @@ public class StringFilter {
 			return r_cast.contains(v_cast);
 		else if (op.equals("$!eq"))
 			return !(r_cast.equals(v_cast));
+		else if (op.equals("$!in"))
+			return !(r_cast.contains(v_cast));
 		else
 			return false;
 	}
