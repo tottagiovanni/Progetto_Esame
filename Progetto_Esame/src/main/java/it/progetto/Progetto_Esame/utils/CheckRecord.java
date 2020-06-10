@@ -1,7 +1,6 @@
 package it.progetto.Progetto_Esame.utils;
 
 import it.progetto.Progetto_Esame.exceptions.EmptyRecordException;
-import it.progetto.Progetto_Esame.exceptions.InvalidRequestException;
 
 /**
  * <p>

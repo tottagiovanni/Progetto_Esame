@@ -1,6 +1,9 @@
 package it.progetto.Progetto_Esame;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +13,7 @@ import it.progetto.Progetto_Esame.exceptions.*;
 import it.progetto.Progetto_Esame.model.*;
 import it.progetto.Progetto_Esame.utils.*;
 import it.progetto.Progetto_Esame.utils.Filter.NumericalFilter;
+import it.progetto.Progetto_Esame.utils.Filter.StringFilter;
 
 
 /**
@@ -26,7 +30,7 @@ public class ProgettoEsameApplicationTests {
 	/**
 	 * Indica un record
 	 */
-	private RecordTwitter record;
+	private ArrayList<RecordTwitter> records = new ArrayList<>();
 	
 	/**
 	 * Metodo per creazione oggetti e settaggio parametri, viene eseguito prima dei test
@@ -35,7 +39,8 @@ public class ProgettoEsameApplicationTests {
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
-		record = new RecordTwitter("123", "2020-05-20", "Giovanni Totta", "Prova test", 3000, 33, 12, "it", "Twitter for Android", 0);
+		records.add(new RecordTwitter("123", "2020-05-20", "Giovanni Totta", "Prova test", 3000, 33, 12, "it", "Twitter for Android", 0));
+		records.add(new RecordTwitter("1434323", "2020-05-20", "Maurizio Cavani", "Enjoy covid", 11000, 434, 77, "en", "Twitter for iPhone", 2));
 	}
 
 	/**
@@ -53,16 +58,27 @@ public class ProgettoEsameApplicationTests {
 	 */
 	@Test
 	void testRecord() {
-		assertAll("valori", ()->assertEquals("123", record.getId_post()),
-				()->assertEquals("2020-05-20", record.getDate()),
-				()->assertEquals("Giovanni Totta", record.getName()),
-				()->assertEquals("Prova test", record.getText()),
-				()->assertEquals(3000, record.getFollowers()),
-				()->assertEquals(33, record.getLike()),
-				()->assertEquals(12, record.getRetweet()),
-				()->assertEquals("it", record.getNation()),
-				()->assertEquals("Twitter for Android", record.getDevice()),
-				()->assertEquals(0, record.getHashtags()));
+		assertAll("valori", ()->assertEquals("123", records.get(0).getId_post()),
+				()->assertEquals("2020-05-20", records.get(0).getDate()),
+				()->assertEquals("Giovanni Totta", records.get(0).getName()),
+				()->assertEquals("Prova test", records.get(0).getText()),
+				()->assertEquals(3000, records.get(0).getFollowers()),
+				()->assertEquals(33, records.get(0).getLike()),
+				()->assertEquals(12, records.get(0).getRetweet()),
+				()->assertEquals("it", records.get(0).getNation()),
+				()->assertEquals("Twitter for Android", records.get(0).getDevice()),
+				()->assertEquals(0, records.get(0).getHashtags()));
+		
+		assertAll("valori", ()->assertEquals("1434323", records.get(1).getId_post()),
+				()->assertEquals("2020-05-20", records.get(1).getDate()),
+				()->assertEquals("Maurizio Cavani", records.get(1).getName()),
+				()->assertEquals("Enjoy covid", records.get(1).getText()),
+				()->assertEquals(11000, records.get(1).getFollowers()),
+				()->assertEquals(434, records.get(1).getLike()),
+				()->assertEquals(77, records.get(1).getRetweet()),
+				()->assertEquals("en", records.get(1).getNation()),
+				()->assertEquals("Twitter for iPhone", records.get(1).getDevice()),
+				()->assertEquals(2, records.get(1).getHashtags()));
 	}
 	
 	/**
@@ -73,6 +89,7 @@ public class ProgettoEsameApplicationTests {
 	void testCompare() {
 		assertEquals(true, NumericalFilter.compare(12L, 1L, "$gt"));
 		assertEquals(false, NumericalFilter.compare(12L, 1L, "$lt"));
+		assertEquals(true, StringFilter.compare("Maurizio", "Maurizio", "$eq"));
 	}
 	
 	/**

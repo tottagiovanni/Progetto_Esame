@@ -73,7 +73,7 @@ public class InfoWindow {
 			
 	        infoFrame.pack();
 	        infoFrame.setVisible(true);
-	        infoFrame.setResizable(true);
+	        infoFrame.setResizable(false);
 	        
 	        chiudi.addActionListener(new ActionListener() {
 	        	/**

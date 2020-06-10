@@ -4,11 +4,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import it.progetto.Progetto_Esame.exceptions.EmptyRecordException;
-import it.progetto.Progetto_Esame.exceptions.InvalidJSONException;
 import it.progetto.Progetto_Esame.exceptions.InvalidTypeException;
 import it.progetto.Progetto_Esame.model.RecordTwitter;
 import it.progetto.Progetto_Esame.model.StatsTwitter;
