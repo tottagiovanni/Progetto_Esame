@@ -45,19 +45,21 @@ public class CollectionFilter {
 		ArrayList<Object> values = JSONValues.getValues(keys, json);
 		
  		int i = 0;
+ 		Method m = null;
  		
 		for (RecordTwitter record: tweets) {
 			i = 0;
 			ArrayList<Object> filteredValues = new ArrayList<Object>();
+			ArrayList<String> methods = new ArrayList<String>();
 			for (String k: keys) {
 				try {
-					Method m = record.getClass().getMethod("get"+k.substring(0, 1).toUpperCase()+k.substring(1),null);
-					
+					m = record.getClass().getMethod("get"+k.substring(0, 1).toUpperCase()+k.substring(1),null);
+					methods.add((m.toString()).substring((m.toString()).lastIndexOf(".") + 1));
 					try {
 						Object record_value = m.invoke(record);
 						filteredValues.add(record_value);
 						if (op.equals("$or")) {
-							if (record_value.equals(values.get(i)) && notinArray(record.getId_post()))
+							if (equals(record_value, values.get(i)) && notinArray(record.getId_post()))
 									filteredJSON.add(record);
 						}
 						
@@ -78,7 +80,7 @@ public class CollectionFilter {
 			}
 			
 			if (op.equals("$and")) {
-				if(AND(filteredValues, values))
+				if(AND(filteredValues, values, methods, keys))
 					filteredJSON.add(record);
 			}
 		}
@@ -87,18 +89,46 @@ public class CollectionFilter {
 	}
 	
 	/**
+	 * Metodo che confronta i tipi di dato e richiami i corrispondenti metodi per filtrare
+	 * @param record_value valore del campo di un RecordTwitter
+	 * @param value valore del campo da filtrare
+	 * @return boolean che segnala se il confronto tra i valori è riuscito
+	 * @see it.progetto.Progetto_Esame.utils.Filter.NumericalFilter#compare(Object, Object, String)
+	 * @see it.progetto.Progetto_Esame.utils.Filter.StringFilter#compare(Object, Object, String)
+	 */
+	public static boolean equals(Object record_value, Object value) {
+		if (value instanceof Number)
+			return NumericalFilter.compare(record_value, value, "$eq");
+		else if (value instanceof String)
+			return StringFilter.compare(record_value, value, "$in");
+		else
+			return false;
+	}
+	
+	/**
 	 * Metodo che verifica se il dato presente nell'ArrayList soddisfa le condizioni del filtro AND
 	 * @param filteredValues ArrayList di tweets filtrati in base ai campi scelti
 	 * @param values ArrayList contenente i valori dei tweets da scegliere 
 	 * @return boolean che segnala se vengono rispettate le condizioni dell'AND
 	 */
-	private static boolean AND(ArrayList<Object> filteredValues, ArrayList<Object> values) {
-		boolean ok = true;
+	private static boolean AND(ArrayList<Object> filteredValues, ArrayList<Object> values, ArrayList<String> methods, ArrayList<String> keys) {
+		int cont = 0, i = 0, j = 0;
 		for (Object value: values) {
-			if (!filteredValues.contains(value))
-					ok = false;
+			j = 0;
+			for (Object record: filteredValues) {
+				String key = "get" + (keys.get(i)).substring(0, 1).toUpperCase() + (keys.get(i)).substring(1) + "()";
+				if (equals(record, value) && (methods.get(j)).equals(key)){
+					cont++;
+				}
+				j++;
+			}
+			i++;
 		}
-		return ok;
+		
+		if (cont == values.size())
+			return true;
+		else
+			return false;
 	}
 	
 	/**

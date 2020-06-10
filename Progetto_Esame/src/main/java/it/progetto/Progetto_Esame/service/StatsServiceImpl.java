@@ -46,7 +46,6 @@ public class StatsServiceImpl implements StatsService {
 	 * @see it.progetto.Progetto_Esame.model.StatsTwitter
 	 * @see it.progetto.Progetto_Esame.utils.Statistics
 	 */
-	@Override
 	public StatsTwitter getStats(String field, ArrayList<RecordTwitter> tweets) {
 		ArrayList<Long> stats = new ArrayList<Long>();
 			

@@ -22,13 +22,13 @@ public class StringFilter {
 		String v_cast = (String) v;
 		
 		if (op.equals("$eq"))
-			return r_cast.equals(v_cast);
+			return (r_cast.toLowerCase()).equals(v_cast.toLowerCase());
 		else if (op.equals("$in"))
-			return r_cast.contains(v_cast);
+			return (r_cast.toLowerCase()).contains(v_cast.toLowerCase());
 		else if (op.equals("$!eq"))
-			return !(r_cast.equals(v_cast));
+			return !((r_cast.toLowerCase()).equals(v_cast.toLowerCase()));
 		else if (op.equals("$!in"))
-			return !(r_cast.contains(v_cast));
+			return !((r_cast.toLowerCase()).contains(v_cast.toLowerCase()));
 		else
 			return false;
 	}
