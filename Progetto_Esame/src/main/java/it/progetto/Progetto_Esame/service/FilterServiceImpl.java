@@ -11,6 +11,7 @@ import it.progetto.Progetto_Esame.model.RecordTwitter;
 
 import it.progetto.Progetto_Esame.exceptions.*;
 import it.progetto.Progetto_Esame.utils.*;
+import it.progetto.Progetto_Esame.utils.Filter.CheckFilter;
 import it.progetto.Progetto_Esame.utils.Filter.CollectionFilter;
 import it.progetto.Progetto_Esame.utils.Filter.FilterSplitter;
 import it.progetto.Progetto_Esame.utils.Filter.NumericalFilter;
@@ -38,6 +39,8 @@ public class FilterServiceImpl implements FilterService{
 	 * @see it.progetto.Progetto_Esame.model.RecordTwitter
 	 * @see it.progetto.Progetto_Esame.utils
 	 * @see it.progetto.Progetto_Esame.service.RecordService#getTweets()
+	 * @see it.progetto.Progetto_Esame.utils.Filter.CheckFilter#isAFilter(String)
+	 * @see it.progetto.Progetto_Esame.exceptions.InvalidFilterException
 	 */
 	public ArrayList<RecordTwitter> getFilterTweets(String filtro){
 		filteredJSON.clear();
@@ -55,6 +58,13 @@ public class FilterServiceImpl implements FilterService{
 		
 		if (filter[0].contains("$")) {
 			return CollectionFilter.compare(filter[0], (JSONArray)json.get(filter[0]));
+		}
+		
+		try {
+			CheckFilter.isAFilter(filter[1]);
+		}catch(InvalidFilterException e) {
+			filteredJSON.add((new RecordTwitter(e.toString())));
+			return filteredJSON;
 		}
 		
 		Object value = ((JSONObject) (((JSONObject) json).get(filter[0]))).get(filter[1]);
@@ -86,7 +96,7 @@ public class FilterServiceImpl implements FilterService{
 					System.out.println(e.toString());
 				}
 			} catch (NoSuchMethodException e) {
-				System.out.println(e.toString());
+				filteredJSON.add(new RecordTwitter(e.toString()));
 				break;
 			} catch (SecurityException e) {
 				System.out.println(e.toString());

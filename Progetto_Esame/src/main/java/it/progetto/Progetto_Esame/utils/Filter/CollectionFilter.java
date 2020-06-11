@@ -5,12 +5,12 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
-import it.progetto.Progetto_Esame.exceptions.InvalidJSONException;
+import it.progetto.Progetto_Esame.exceptions.InvalidFilterException;
 import it.progetto.Progetto_Esame.exceptions.InvalidTypeException;
 import it.progetto.Progetto_Esame.model.RecordTwitter;
 import it.progetto.Progetto_Esame.service.RecordService;
+import it.progetto.Progetto_Esame.utils.CheckType;
 import it.progetto.Progetto_Esame.utils.JSON.JSONKeys;
 import it.progetto.Progetto_Esame.utils.JSON.JSONValues;
 
@@ -37,9 +37,21 @@ public class CollectionFilter {
 	 * @see it.progetto.Progetto_Esame.model.RecordTwitter
 	 * @see it.progetto.Progetto_Esame.utils
 	 * @see it.progetto.Progetto_Esame.service.RecordService#getTweets()
+	 * @see it.progetto.Progetto_Esame.utils.CheckType#check(Object, Object)
+	 * @see it.progetto.Progetto_Esame.exceptions.InvalidTypeException
+	 * @see it.progetto.Progetto_Esame.utils.Filter.CheckFilter#isAFilter(String)
+	 * @see it.progetto.Progetto_Esame.exceptions.InvalidFilterException
 	 */
 	public static ArrayList<RecordTwitter> compare(String op, JSONArray json) {
 		filteredJSON.clear();
+		
+		try {
+			CheckFilter.isAFilter(op);
+		}catch(InvalidFilterException e) {
+			filteredJSON.add((new RecordTwitter(e.toString())));
+			return filteredJSON;
+		}
+		
 		ArrayList<RecordTwitter> tweets = RecordService.getTweets();
 		ArrayList<String> keys = JSONKeys.getKeys(json);
 		ArrayList<Object> values = JSONValues.getValues(keys, json);
@@ -58,6 +70,15 @@ public class CollectionFilter {
 					try {
 						Object record_value = m.invoke(record);
 						filteredValues.add(record_value);
+						
+						try {
+							CheckType.check(record_value, values.get(i));
+						} catch (InvalidTypeException e) {
+							filteredJSON.clear();
+							filteredJSON.add(new RecordTwitter(e.toString()));			
+							return filteredJSON;
+						}
+						
 						if (op.equals("$or")) {
 							if (equals(record_value, values.get(i)) && notinArray(record.getId_post()))
 									filteredJSON.add(record);
@@ -71,6 +92,7 @@ public class CollectionFilter {
 						System.out.println(e.toString());
 					}
 				} catch (NoSuchMethodException e) {
+					filteredJSON.clear();
 					filteredJSON.add(new RecordTwitter(e.toString()));
 					return filteredJSON;
 				} catch (SecurityException e) {
@@ -117,9 +139,10 @@ public class CollectionFilter {
 			j = 0;
 			for (Object record: filteredValues) {
 				String key = "get" + (keys.get(i)).substring(0, 1).toUpperCase() + (keys.get(i)).substring(1) + "()";
-				if (equals(record, value) && (methods.get(j)).equals(key)){
-					cont++;
-				}
+				if (record.getClass() == value.getClass())
+					if (equals(record, value) && (methods.get(j)).equals(key)){
+						cont++;
+					}
 				j++;
 			}
 			i++;

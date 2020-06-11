@@ -48,7 +48,14 @@ public class StatsServiceImpl implements StatsService {
 	 */
 	public StatsTwitter getStats(String field, ArrayList<RecordTwitter> tweets) {
 		ArrayList<Long> stats = new ArrayList<Long>();
-			
+		
+		try {
+			RecordTwitter app = new RecordTwitter();
+			Method check = app.getClass().getMethod("get" + field.substring(0, 1).toUpperCase() + field.substring(1), null);
+		}catch(NoSuchMethodException e) {
+			return new StatsTwitter(e.toString());
+		}
+		
 		for (RecordTwitter tweet : tweets) {
 			Method m;
 			try {
@@ -90,10 +97,12 @@ public class StatsServiceImpl implements StatsService {
 
 		StatsTwitter stats_twitter = new StatsTwitter(field, Statistics.avg(stats), Statistics.min(stats), Statistics.max(stats), Statistics.sum(stats), (long)Statistics.count(stats), Statistics.standardDeviation(stats), Statistics.mode(stats));
 		
-		if (!tweets.isEmpty() && tweets.get(0).getId_post() == null)
+		if (!tweets.isEmpty() && tweets.get(0).getId_post() == null) {
+			stats_twitter.setField(tweets.get(0).getText());
 			stats_twitter.setCount(0L);
+		}
+		
 			
 		return stats_twitter;
 	}
-
 }

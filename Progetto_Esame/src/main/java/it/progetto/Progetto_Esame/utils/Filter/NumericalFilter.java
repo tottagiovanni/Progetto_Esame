@@ -36,6 +36,9 @@ public class NumericalFilter {
 
 		else if (op.equals("$eq"))
 			return r_cast.equals(v_cast);
+		
+		else if (op.equals("$!eq"))
+			return !(r_cast.equals(v_cast));
 		else
 			return false;
 	}

@@ -99,7 +99,7 @@ public class Controller {
 		}
 		else {
 			StatsTwitter res = stats.getStats(field, filter.getFilterTweets(filtro));
-			if (res.getMin() == null)
+			if (res.getMin() == null || res.getStandardDeviation() == 0.0)
 				return new ResponseEntity<>(res.getField(), HttpStatus.BAD_REQUEST);
 			else
 				return new ResponseEntity<>(res, HttpStatus.OK);
@@ -151,7 +151,7 @@ public class Controller {
 		}
 		
 		StatsTwitter res = stats.getStats(field, filter.getFilterTweets(filtro));
-		if (res.getMin() == null)
+		if (res.getMin() == null || res.getStandardDeviation() == 0.0)
 			return new ResponseEntity<>(res.getField(), HttpStatus.BAD_REQUEST);
 		else
 			return new ResponseEntity<>(res, HttpStatus.OK);
