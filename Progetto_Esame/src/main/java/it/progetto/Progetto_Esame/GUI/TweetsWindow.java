@@ -22,6 +22,8 @@ import it.progetto.Progetto_Esame.service.RecordService;
 public class TweetsWindow {
 	/**
 	 * Metodo che consente la visualizzazione di tutti i tweets ricercati (argomento o ultima ricerca)
+	 * @see it.progetto.Progetto_Esame.service.RecordService#getTweets()
+	 * @see it.progetto.Progetto_Esame.service.GeneralStatsService#getGeneralStats()
 	 */
 	public static void show() {
 		ArrayList<RecordTwitter> tweets = RecordService.getTweets();

@@ -24,6 +24,7 @@ public class InfoWindow {
 	/**
 	 * Metodo che consente di visualizzare i dettagli di un tweet tramite il suo id
 	 * @param id_post id che identifica il tweet
+	 * @see it.progetto.Progetto_Esame.service.RecordService#getRecord(String)
 	 */
 	public static void show(String id_post) {
 			JFrame infoFrame = new JFrame("Informazioni su "+id_post);

@@ -51,8 +51,8 @@ public class GeneralStats {
 	private Long min_follower;
 	
 
-	/**Costruttore di default
-	 * 
+	/**
+	 * Costruttore di default della classe
 	 */
 	public GeneralStats() {
 		
@@ -64,13 +64,12 @@ public class GeneralStats {
 	 * @param avg_like media dei like totali
 	 * @param max_like massimo tra tutti i like
 	 * @param min_like minimo tra tutti i like
-	 * @param sum_like somma totale dei like
 	 * @param num_retweet somma totale dei retweet
 	 * @param avg_follower media dei follower totali
 	 * @param max_follower massimo tra i follower
 	 * @param min_follower minimo tra i follower
 	 */
-	public GeneralStats(int num_tweets, Long avg_like, Long max_like, Long min_like, Long sum_like, Long num_retweet, Long avg_follower, Long max_follower,
+	public GeneralStats(int num_tweets, Long avg_like, Long max_like, Long min_like, Long num_retweet, Long avg_follower, Long max_follower,
 			Long min_follower) {
 		super();
 		this.num_tweets = num_tweets;
