@@ -39,7 +39,6 @@ I filtri disponibili ("operatore") sono:
 
 ## MODELLAZIONE PROGETTO
 ### Casi d'uso
-![casouso1](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/usecase1-1.png)
 ![casouso2](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/usecase2-1.png)
 
 ### Diagramma dei package
