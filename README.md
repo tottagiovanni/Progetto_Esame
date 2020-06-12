@@ -2,7 +2,7 @@
 ## SCOPO
 L'applicazione si occupa dell'analisi dei dati e metadati provenienti da una ricerca su Twitter. 
 Su una lista di 50 tweets, ricercati in base ad una keyword o da file locale, si ha la possibilità di:
-- visualizzare la lista completa;
+- visualizzare la lista completa con statistiche generali;
 - visualizzare dettagli di un tweet specifico;
 - filtrare la lista su uno o più campi;
 - visualizzare le statistiche su un campo;
@@ -11,6 +11,13 @@ Su una lista di 50 tweets, ricercati in base ad una keyword o da file locale, si
 
 Il Data-set è un JSON contenente le informazioni principali per ogni tweet, ad esempio:
 ![JSON](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/json.PNG)
+
+### Interfaccia utente
+![intro](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/IntroWindow.png)
+![msg](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/MessageDialog.png)
+![list](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/TweetsWindow.png)
+![info](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/InfoWindow.png)
+
 
 ## TIPOLOGIA RICHIESTE
 |METODI|ROTTA   |DESCRIZIONE| 
@@ -39,14 +46,24 @@ I filtri disponibili ("operatore") sono:
 
 ## MODELLAZIONE PROGETTO
 ### Casi d'uso
+![casouso1](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/usecase1-1.png)
 ![casouso2](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/usecase2-1.png)
 
 ### Diagramma dei package
 ![package](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/package_diagramm.jpeg)
 
+### Diagramma delle classi 
+*Diagramma della classe **JSONService** e le varie relazioni*
+![jsondiagram](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/class_diagram_JSON.jpg)
 
+*Diagramma della classe **FilterService** e le varie relazioni*
+![filterdiagram](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/class_diagram_filter.jpeg)
 
+*Diagramma della classe **StatsService** e le varie relazioni*
+![filterdiagram](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/class_diagram_stats.jpeg)
 
+*Diagramma della classe **MetadataService** e le varie relazioni*
+![filterdiagram](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/class_diagram_metadata.jpg)
 
 
 
