@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import it.progetto.Progetto_Esame.model.GeneralStats;
 import it.progetto.Progetto_Esame.model.RecordTwitter;
+import it.progetto.Progetto_Esame.service.GeneralStatsService;
 import it.progetto.Progetto_Esame.service.RecordService;
 
 /**
@@ -33,13 +35,45 @@ public class TweetsWindow {
 		if (num < 15)
 			num = 15;
 
-		panel.setLayout(new GridLayout(num + 1, 1));
+		panel.setLayout(new GridLayout(num + 2, 1));
 		
 		if (tweets.isEmpty())
 			panel.add(new JLabel("Non ci sono risultati associati."));
 		else {
-			JButton[] buttons = new JButton[num];
+			
+			GeneralStatsService generalStatsService = new GeneralStatsService();
+			GeneralStats generalStats = generalStatsService.getGeneralStats();
 
+	        
+			JPanel stastPanel = new JPanel();
+			stastPanel.setLayout(new GridLayout(1,3));
+
+			
+			JLabel stats1 = new JLabel("<html>"
+					+ "<br><br>Numero post: " + generalStats.getNum_tweets()
+					+ "<br>Numero retweet: " + generalStats.getNum_retweet()
+					+ "</html>");
+			JLabel stats2 = new JLabel("<html>"
+					+ "<br>STATISTICHE<br>"
+					+ "<br>Media like: " + generalStats.getAvg_like()
+					+ "<br>Massimo like:" + generalStats.getMax_like()
+					+ "<br>Minimo like: " + generalStats.getMin_like()
+					+ "</html>");
+			JLabel stats3 = new JLabel("<html>"
+					+ "<br><br>Media follower: " + generalStats.getAvg_follower()
+					+ "<br>Massimo follower: " + generalStats.getMax_follower()
+					+ "<br>Minimo follower: " + generalStats.getMin_follower()
+					+ "</html>");
+			
+			
+			
+			stastPanel.add(stats1);
+			stastPanel.add(stats2);
+			stastPanel.add(stats3);
+			panel.add(stastPanel);
+			
+			JButton[] buttons = new JButton[num];
+			
 			int i = 0;
 			for (RecordTwitter tweet : tweets) {
 				buttons[i] = new JButton(
