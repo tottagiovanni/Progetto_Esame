@@ -1,7 +1,7 @@
 # Progetto_Esame
 ## SCOPO
 L'applicazione si occupa dell'analisi dei dati e metadati provenienti da una ricerca su Twitter. 
-Su una lista di 50 tweets, ricercati in base ad una keyword o da file locale, si ha la possibilità di:
+Su una lista di 50 tweets, [ricercati in base ad una keyword o da file locale]([intro]), si ha la possibilità di:
 - visualizzare la lista completa con statistiche generali;
 - visualizzare dettagli di un tweet specifico;
 - filtrare la lista su uno o più campi;
