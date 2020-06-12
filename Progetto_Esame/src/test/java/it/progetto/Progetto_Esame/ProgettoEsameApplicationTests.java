@@ -49,7 +49,7 @@ public class ProgettoEsameApplicationTests {
 	 */
 	@AfterEach
 	void tearDown() throws Exception {
-		System.out.println("Test terminato");
+		System.out.println("Test terminato.");
 	}
 	
 	/**

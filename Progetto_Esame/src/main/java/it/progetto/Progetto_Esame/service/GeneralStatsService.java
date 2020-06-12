@@ -8,7 +8,6 @@ import it.progetto.Progetto_Esame.utils.Statistics;
 
 public class GeneralStatsService {
 	public GeneralStatsService() {
-		ArrayList<RecordTwitter> tweets = RecordService.getTweets();
 		
 		// TO DO
 	}

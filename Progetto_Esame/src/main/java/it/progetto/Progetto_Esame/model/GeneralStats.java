@@ -7,6 +7,7 @@ package it.progetto.Progetto_Esame.model;
  * @author Saraceno Alberto Zaccaria
  * @author Totta Giovanni
  * @version 1.0
+ * @see it.progetto.Progetto_Esame.service.GeneralStatsService
  */
 public class GeneralStats {
 	/**
