@@ -30,16 +30,16 @@ Il Data-set è un JSON contenente le informazioni principali per ogni tweet, ad 
 *per le richieste in post, il parametro filter è richiesto nel body.*
 
 I filtri disponibili ("operatore") sono:
-- `"$eq"` --> _valore campo_ uguale a _valore_;
-- `"$!eq"` --> _valore campo_ diverso da _valore_;
-- `"$in"` --> _valore_ presente in _valore campo_;
-- `"$!in"` --> _valore_ non presente in _valore campo_;
-- `"$gte"` --> _valore campo_ maggiore (o uguale) di _valore_;
-- `"$gt"` --> _valore campo_ maggiore di _valore_;
-- `"$lt"` --> _valore campo_ minore di _valore_;
-- `"$lte"` --> _valore campo_ minore (o uguale) di _valore_;
-- `"$and"` --> concatenazione di più filtri ("$in" per le stringhe, "$eq" per i numeri) ;
-- `"$or"` --> concatenazione di più filtri ("$in" per le stringhe, "$eq" per i numeri).
+- `"$eq"` --> _**valore campo**_ uguale a _valore_;
+- `"$!eq"` --> _**valore campo**_ diverso da _**valore**_;
+- `"$in"` --> _**valore**_ presente in _**valore campo**_;
+- `"$!in"` --> _**valore**_ non presente in _**valore campo**_;
+- `"$gte"` --> _**valore campo**_ maggiore (o uguale) di _**valore**_;
+- `"$gt"` --> _**valore campo**_ maggiore di _**valore**_;
+- `"$lt"` --> _**valore campo**_ minore di _**valore**_;
+- `"$lte"` --> _**valore campo**_ minore (o uguale) di _**valore**_;
+- `"$and"` --> concatenazione di più filtri (`"$in"` per le stringhe, `"$eq"` per i numeri) ;
+- `"$or"` --> concatenazione di più filtri (`"$in"` per le stringhe, `"$eq"` per i numeri).
 
 ## Diagramma dei package
 ![package](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/package_diagramm.jpeg)
