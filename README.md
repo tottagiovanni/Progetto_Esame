@@ -1,5 +1,5 @@
 # Progetto_Esame
-## Scopo
+## SCOPO
 L'applicazione si occupa dell'analisi dei dati e metadati provenienti da una ricerca su Twitter. 
 Su una lista di 50 tweets, ricercati in base ad una keyword o da file locale, si ha la possibilità di:
 - visualizzare la lista completa;
@@ -12,11 +12,7 @@ Su una lista di 50 tweets, ricercati in base ad una keyword o da file locale, si
 Il Data-set è un JSON contenente le informazioni principali per ogni tweet, ad esempio:
 ![JSON](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/json.PNG)
 
-## Casi d'uso
-![casouso1](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/usecase1-1.png)
-![casouso2](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/usecase2-1.png)
-
-## Tipologia richieste
+## TIPOLOGIA RICHIESTE
 |METODI|ROTTA   |DESCRIZIONE| 
 | :--- |--------|-----------|
 |GET   |`/tweets` |restituisce tutti i record|
@@ -29,7 +25,24 @@ Il Data-set è un JSON contenente le informazioni principali per ogni tweet, ad 
 
 *per le richieste in post, il parametro filter è richiesto nel body.*
 
-## Diagramma dei package
+I filtri disponibili ("operatore") sono:
+- `"$eq"` --> _**valore campo**_ uguale a _**valore**_;
+- `"$!eq"` --> _**valore campo**_ diverso da _**valore**_;
+- `"$in"` --> _**valore**_ presente in _**valore campo**_;
+- `"$!in"` --> _**valore**_ non presente in _**valore campo**_;
+- `"$gte"` --> _**valore campo**_ maggiore (o uguale) di _**valore**_;
+- `"$gt"` --> _**valore campo**_ maggiore di _**valore**_;
+- `"$lt"` --> _**valore campo**_ minore di _**valore**_;
+- `"$lte"` --> _**valore campo**_ minore (o uguale) di _**valore**_;
+- `"$and"` --> concatenazione di più filtri (`"$in"` per le stringhe, `"$eq"` per i numeri) ;
+- `"$or"` --> concatenazione di più filtri (`"$in"` per le stringhe, `"$eq"` per i numeri).
+
+## MODELLAZIONE PROGETTO
+### Casi d'uso
+![casouso1](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/usecase1-1.png)
+![casouso2](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/usecase2-1.png)
+
+### Diagramma dei package
 ![package](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/package_diagramm.jpeg)
 
 
