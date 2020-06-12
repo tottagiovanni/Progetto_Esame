@@ -1,7 +1,7 @@
 # Progetto_Esame
 ## SCOPO
 L'applicazione si occupa dell'analisi dei dati e metadati provenienti da una ricerca su Twitter. 
-Su una lista di 50 tweets, [ricercati in base ad una keyword o da file locale]([intro]), si ha la possibilità di:
+Su una lista di 50 tweets, [ricercati in base ad una keyword o da file locale](#finestra-per-caricare-i-tweet), si ha la possibilità di:
 - visualizzare la lista completa con statistiche generali;
 - visualizzare dettagli di un tweet specifico;
 - filtrare la lista su uno o più campi;
@@ -13,6 +13,7 @@ Il Data-set è un JSON contenente le informazioni principali per ogni tweet, ad 
 ![JSON](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/json.PNG)
 
 ### Interfaccia utente
+#### Finestra per caricare i tweet
 ![intro](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/IntroWindow.png)
 ![msg](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/MessageDialog.png)
 ![list](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/TweetsWindow.png)
