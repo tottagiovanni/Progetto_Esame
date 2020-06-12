@@ -40,7 +40,7 @@ public class ProgettoEsameApplicationTests {
 	@BeforeEach
 	void setUp() throws Exception {
 		records.add(new RecordTwitter("123", "2020-05-20", "Giovanni Totta", "Prova test", 3000, 33, 12, "it", "Twitter for Android", 0));
-		records.add(new RecordTwitter("1434323", "2020-05-20", "Maurizio Cavani", "Enjoy covid", 11000, 434, 77, "en", "Twitter for iPhone", 2));
+		records.add(new RecordTwitter("1434323", "2020-05-20", "Maurizio Cavani", "Ciao a tutti", 11000, 434, 77, "en", "Twitter for iPhone", 2));
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class ProgettoEsameApplicationTests {
 		assertAll("valori", ()->assertEquals("1434323", records.get(1).getId_post()),
 				()->assertEquals("2020-05-20", records.get(1).getDate()),
 				()->assertEquals("Maurizio Cavani", records.get(1).getName()),
-				()->assertEquals("Enjoy covid", records.get(1).getText()),
+				()->assertEquals("Ciao a tutti", records.get(1).getText()),
 				()->assertEquals(11000, records.get(1).getFollowers()),
 				()->assertEquals(434, records.get(1).getLike()),
 				()->assertEquals(77, records.get(1).getRetweet()),
@@ -82,14 +82,15 @@ public class ProgettoEsameApplicationTests {
 	}
 	
 	/**
-	 * Metodo per testare il confronto numerico in base al filtro
+	 * Metodo per testare il confronto numerico e testuale in base al filtro
 	 * @see it.progetto.Progetto_Esame.utils.Filter.NumericalFilter#compare(Object, Object, String)
+	 * @see it.progetto.Progetto_Esame.utils.Filter.StringFilter#compare(Object, Object, String)
 	 */
 	@Test
 	void testCompare() {
 		assertEquals(true, NumericalFilter.compare(12L, 1L, "$gt"));
 		assertEquals(false, NumericalFilter.compare(12L, 1L, "$lt"));
-		assertEquals(true, StringFilter.compare("Maurizio", "Maurizio", "$eq"));
+		assertEquals(true, StringFilter.compare("Marco", "Marco", "$eq"));
 	}
 	
 	/**
