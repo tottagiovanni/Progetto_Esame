@@ -2,8 +2,8 @@
 ## SCOPO
 L'applicazione si occupa dell'analisi dei dati e metadati provenienti da una ricerca su Twitter. 
 Su una lista di 50 tweets, [ricercati in base ad una keyword o da file locale](#finestra-per-caricare-i-tweet), si ha la possibilità di:
-- visualizzare la lista completa con statistiche generali;
-- visualizzare dettagli di un tweet specifico;
+- [visualizzare la lista completa con statistiche generali](#finestra-con-tweet-e-statistiche);
+- [visualizzare dettagli di un tweet specifico](#finestra-per-dettagli-su-un-tweet);
 - filtrare la lista su uno o più campi;
 - visualizzare le statistiche su un campo;
 - visualizzare le statistiche filtrate su un campo;
@@ -16,7 +16,9 @@ Il Data-set è un JSON contenente le informazioni principali per ogni tweet, ad 
 #### Finestra per caricare i tweet
 ![intro](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/IntroWindow.png)
 ![msg](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/MessageDialog.png)
+#### Finestra con tweet e statistiche
 ![list](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/TweetsWindow.png)
+#### Finestra per dettagli su un tweet
 ![info](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/InfoWindow.png)
 
 
@@ -66,7 +68,13 @@ I filtri disponibili ("operatore") sono:
 *Diagramma della classe **MetadataService** e le varie relazioni*
 ![filterdiagram](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/class_diagram_metadata.jpg)
 
+### Diagrammi di sequenza
 
+### Programmi utilizzati
+
+### Autori
+- Saraceno Alberto Zaccaria
+- Totta Giovanni
 
 
 
