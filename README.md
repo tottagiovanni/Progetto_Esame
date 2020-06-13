@@ -1,6 +1,6 @@
 # Progetto_Esame
 ## SCOPO
-L'applicazione si occupa dell'analisi dei dati e metadati provenienti da una ricerca su Twitter. 
+L'applicazione si occupa dell'analisi dei dati e metadati, riguardanti le metriche pubbliche, provenienti da una ricerca su Twitter. 
 Su una lista di 50 tweets, [ricercati in base ad una keyword o da file locale](#finestra-per-caricare-i-tweet), si ha la possibilità di:
 - [visualizzare la lista completa con statistiche generali](#finestra-con-tweet-e-statistiche);
 - [visualizzare dettagli di un tweet specifico](#finestra-per-dettagli-su-un-tweet);
@@ -56,7 +56,7 @@ I filtri disponibili ("operatore") sono:
 ### Diagramma dei package
 ![package](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/package_diagramm.jpeg)
 
-### Diagramma delle classi 
+### Diagrammi delle classi 
 *Diagramma della classe **JSONService** e le varie relazioni*
 ![jsondiagram](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/class_diagram_JSON.jpg)
 
@@ -72,6 +72,10 @@ I filtri disponibili ("operatore") sono:
 ### Diagrammi di sequenza
 
 ### Programmi utilizzati
+- **Eclipse**, per scrittura codice, documentazione e diagrammi (classi e sequenze);
+- **Postman**, per testare le richieste al server locale;
+- **Spring Boot**, framework che consente lo sviluppo di web app scritte in codice Java;
+- **ArgoUML**, per creazione diagrammi dei casi d'uso.
 
 ### Autori
 - Saraceno Alberto Zaccaria
