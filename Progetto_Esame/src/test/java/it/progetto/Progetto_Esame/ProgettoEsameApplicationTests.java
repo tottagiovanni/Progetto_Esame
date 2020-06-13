@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import it.progetto.Progetto_Esame.exceptions.*;
 import it.progetto.Progetto_Esame.model.*;
+import it.progetto.Progetto_Esame.service.DataService;
+import it.progetto.Progetto_Esame.service.RecordService;
 import it.progetto.Progetto_Esame.utils.*;
 import it.progetto.Progetto_Esame.utils.Filter.NumericalFilter;
 import it.progetto.Progetto_Esame.utils.Filter.StringFilter;
@@ -28,9 +30,14 @@ import it.progetto.Progetto_Esame.utils.Filter.StringFilter;
 public class ProgettoEsameApplicationTests {
 
 	/**
-	 * Indica un record
+	 * Indica una lista di record
 	 */
 	private ArrayList<RecordTwitter> records = new ArrayList<>();
+	
+	/**
+	 * Indica il service che gestisce il caricamento dei dati
+	 */
+	private RecordService rs;
 	
 	/**
 	 * Metodo per creazione oggetti e settaggio parametri, viene eseguito prima dei test
@@ -41,6 +48,8 @@ public class ProgettoEsameApplicationTests {
 	void setUp() throws Exception {
 		records.add(new RecordTwitter("123", "2020-05-20", "Giovanni Totta", "Prova test", 3000, 33, 12, "it", "Twitter for Android", 0));
 		records.add(new RecordTwitter("1434323", "2020-05-20", "Maurizio Cavani", "Ciao a tutti", 11000, 434, 77, "en", "Twitter for iPhone", 2));
+		
+		rs = new RecordService(DataService.setLocalTweets());
 	}
 
 	/**
@@ -94,14 +103,24 @@ public class ProgettoEsameApplicationTests {
 	}
 	
 	/**
+	 * Metodo per testare il corretto caricamento dei dati da locale
+	 * @see it.progetto.Progetto_Esame.service.RecordService#getTweets()
+	 */
+	@Test
+	void testCaricaDati() {
+		assertFalse(RecordService.getTweets().isEmpty());
+	}
+		
+	/**
 	 * Metodo per testare l'eccezione di tipo errato
 	 * @see it.progetto.Progetto_Esame.exceptions.InvalidTypeException
 	 * @see it.progetto.Progetto_Esame.utils.CheckType#check(Object, Object)
 	 */
 	@Test
 	void testException() {
+		Object record = "stringa";
 		Object value = 123L;
-		InvalidTypeException exception = assertThrows(InvalidTypeException.class, () -> {CheckType.check("string", value);});
-		assertEquals("Tipo di dato da filtare non valido! Inserire campo di tipo: "+value.getClass(), exception.getMessage());
+		InvalidTypeException exception = assertThrows(InvalidTypeException.class, () -> {CheckType.check(record, value);});
+		assertEquals("Tipo di dato da filtare non valido! Inserire campo di tipo: "+record.getClass(), exception.getMessage());
 	}
 }
