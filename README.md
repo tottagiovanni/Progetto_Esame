@@ -21,6 +21,7 @@ Il Data-set è un JSON contenente le informazioni principali per ogni tweet, ad 
 #### Finestra per dettagli su un tweet
 ![info](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/InfoWindow.png)
 
+N.B.: per filtrare i dati e per le statistiche specifiche è necessario utilizzare un API client, come [Postman](https://www.postman.com/).
 
 ## TIPOLOGIA RICHIESTE
 |METODI|ROTTA   |DESCRIZIONE| 
