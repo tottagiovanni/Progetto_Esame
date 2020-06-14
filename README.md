@@ -30,7 +30,7 @@ N.B.: per filtrare i dati e per le statistiche specifiche è necessario utilizza
 |GET/POST   |`/tweets?filter={"campo":{"operatore":valore}}` | restituisce i record filtrati|
 |GET/POST   |`/tweets?filter={"$and": [{"campo1": valore1},{"campo2": valore2}]}`|restituisce la concatenazione di record filtrati per AND|
 |GET/POST   |`/tweets?filter={"$or": [{"campo1": valore1},{"campo2": valore2}]}`|restituisce la concatenazione di record filtrati per OR|
-|GET   |`/stats?field=campo`|restituisce le statistiche di tutti i post per quel campo|
+|GET   |`/stats?field=campo`|restituisce le statistiche di tutti i post per quel campo (tipo numerico)|
 |GET/POST   |`/stats?field=campo&filter={"campo":{"operatore":valore}}`|restituisce le statistiche dei post filtrati per un certo campo (vale anche per AND e OR)|
 |GET   |`/metadata`|restituisce i metadati|
 
