@@ -75,6 +75,7 @@ I filtri disponibili ("operatore") sono:
 - **Eclipse**, per scrittura codice, documentazione e diagrammi (classi e sequenze);
 - **Postman**, per testare le richieste al server locale;
 - **Spring Boot**, framework che consente lo sviluppo di web app scritte in codice Java;
+- **Maven**, strumento per la gestione dei progetti Java;
 - **ArgoUML**, per creazione diagrammi dei casi d'uso.
 
 ### Autori
