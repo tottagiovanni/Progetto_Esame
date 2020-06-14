@@ -2,17 +2,21 @@ package it.progetto.Progetto_Esame;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import it.progetto.Progetto_Esame.exceptions.*;
 import it.progetto.Progetto_Esame.model.*;
 import it.progetto.Progetto_Esame.service.DataService;
+import it.progetto.Progetto_Esame.service.FilterService;
 import it.progetto.Progetto_Esame.service.RecordService;
+import it.progetto.Progetto_Esame.service.StatsService;
 import it.progetto.Progetto_Esame.utils.*;
 import it.progetto.Progetto_Esame.utils.Filter.NumericalFilter;
 import it.progetto.Progetto_Esame.utils.Filter.StringFilter;
@@ -37,7 +41,20 @@ public class ProgettoEsameApplicationTests {
 	/**
 	 * Indica il service che gestisce il caricamento dei dati
 	 */
+	
 	private RecordService rs;
+	
+	/**
+	 * Indica il service che gestisce il filtraggio dei dati
+	 */
+	@Autowired
+	FilterService fs;
+	
+	/**
+	 * Indica il service che gestisce le statistiche sui dati
+	 */
+	@Autowired
+	StatsService stats;
 	
 	/**
 	 * Metodo per creazione oggetti e settaggio parametri, viene eseguito prima dei test
@@ -49,7 +66,7 @@ public class ProgettoEsameApplicationTests {
 		records.add(new RecordTwitter("123", "2020-05-20", "Giovanni Totta", "Prova test", 3000, 33, 12, "it", "Twitter for Android", 0));
 		records.add(new RecordTwitter("1434323", "2020-05-20", "Maurizio Cavani", "Ciao a tutti", 11000, 434, 77, "en", "Twitter for iPhone", 2));
 		
-		rs = new RecordService(DataService.setLocalTweets());
+		rs = new RecordService(DataService.setTweets(new URL("https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q=univpm&count=50&result_type=mixed")));
 	}
 
 	/**
@@ -107,8 +124,27 @@ public class ProgettoEsameApplicationTests {
 	 * @see it.progetto.Progetto_Esame.service.RecordService#getTweets()
 	 */
 	@Test
-	void testCaricaDati() {
+	void testLoadData() {
 		assertFalse(RecordService.getTweets().isEmpty());
+	}
+	
+	/**
+	 * Metodo per testare la corretta applicazione dei filtri ai dati
+	 * @see it.progetto.Progetto_Esame.service.FilterService#getFilterTweets(String)
+	 */
+	@Test
+	void testFilters() {
+		assertFalse(fs.getFilterTweets("{\"Like\": {\"$lte\": 10000}}").isEmpty());
+		assertTrue(fs.getFilterTweets("{\"Like\": {\"$gte\": 100000}}").isEmpty());
+	}
+	
+	/**
+	 * Metodo per testare il corretto calcolo delle statistiche sui dati
+	 * @see it.progetto.Progetto_Esame.service.StatsService#getStats(String, ArrayList)
+	 */
+	@Test
+	void testStats() {
+		assertFalse(stats.getStats("Like", RecordService.getTweets()).getMin().equals(null));
 	}
 		
 	/**
