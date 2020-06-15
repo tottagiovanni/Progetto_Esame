@@ -136,6 +136,7 @@ public class ProgettoEsameApplicationTests {
 	void testFilters() {
 		assertFalse(fs.getFilterTweets("{\"Like\": {\"$lte\": 10000}}").isEmpty());
 		assertTrue(fs.getFilterTweets("{\"Like\": {\"$gte\": 100000}}").isEmpty());
+		assertFalse(fs.getFilterTweets("{\"$and\": [{\"nation\": \"it\"}, {\"text\": \"univpm\"}]}").isEmpty());
 	}
 	
 	/**
@@ -145,6 +146,8 @@ public class ProgettoEsameApplicationTests {
 	@Test
 	void testStats() {
 		assertFalse(stats.getStats("Like", RecordService.getTweets()).getMin().equals(null));
+		assertFalse(stats.getStats("Like", fs.getFilterTweets("{\"Like\": {\"$lte\": 10000}}")).getMin().equals(null));
+		assertTrue(stats.getStats("Like", fs.getFilterTweets("{\"$and\": [{\"nation\": \"in\"}, {\"text\": \"univpm\"}]}")).getMin().equals(0L));
 	}
 		
 	/**

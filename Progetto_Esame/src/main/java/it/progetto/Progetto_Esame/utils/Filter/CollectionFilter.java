@@ -101,7 +101,7 @@ public class CollectionFilter {
 				i++;
 			}
 			
-			if (op.equals("$and")) {
+			if (op.equals("$and") && checkDuplicates(keys)) {
 				if(AND(filteredValues, values, methods, keys))
 					filteredJSON.add(record);
 			}
@@ -152,6 +152,22 @@ public class CollectionFilter {
 			return true;
 		else
 			return false;
+	}
+	
+	/**
+	 * Metodo che verifica se ci sono duplicati nell'ArrayList di campi da filtrare (per filtro $and) 
+	 * @param keys ArrayList di campi da filtrare 
+	 * @return boolean che segnala se ci sono o meno duplicati
+	 */
+	private static boolean checkDuplicates(ArrayList<String> keys) {
+		for (int i = 0; i < keys.size(); i++) {
+		     for (int j = i + 1 ; j < keys.size(); j++) {
+		          if (keys.get(i).toLowerCase().equals(keys.get(j).toLowerCase())) {
+		                   return false;
+		          }
+		     }
+		 }
+		return true;
 	}
 	
 	/**
