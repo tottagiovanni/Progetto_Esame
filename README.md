@@ -70,6 +70,32 @@ I filtri disponibili ("operatore") sono:
 ![filterdiagram](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/class_diagram_metadata.jpg)
 
 ### Diagrammi di sequenza
+Diagramma di sequenza per il caricamento dei dati tramite keyword, attraverso una interfaccia utente *user-friendly*.
+![cercaTweets](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/sequence_search.png)
+
+Diagramma di sequenza per il caricamento dei dati tramite file locale, attraverso una interfaccia utente *user-friendly*.
+![caricaTweets](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/sequence_load.png)
+
+Diagramma di sequenza per la visualizzazione della lista dei tweet e delle statistiche generali.
+![visualizzaTweets](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/sequence_view.png)
+
+Diagramma di sequenza per la visualizzazione dei dettagli dei singoli tweet.
+![infoTweets](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/sequence_info.png)
+
+Diagramma di sequenza per la gestione della richiesta di tutti i tweet, con i relativi dati, attraverso una `GET` da client (vedi [tabella](#tipologia-richieste) - riga 1).
+![tweets](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/sequence_TWEETS.png)
+
+Diagramma di sequenza per la gestione della richiesta dei tweet filtrati, attraverso una `GET/POST` tramite client (vedi [tabella](#tipologia-richieste) - righe 2-3-4).
+![filter](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/sequence_FILTER.png)
+
+Diagramma di sequenza per la gestione della richiesta di statistiche su un campo numerico di tutti i tweet, attraverso una `GET` tramite client (vedi [tabella](#tipologia-richieste) - riga 5).
+![stats](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/sequence_stats.png)
+
+Diagramma di sequenza per la gestione della richiesta di statistiche su un campo numerico dei tweet filtrati, attraverso una `GET/POST` tramite client (vedi [tabella](#tipologia-richieste) - riga 6).
+![statsFilter](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/sequence_statsFilter.png)
+
+Diagramma di sequenza per la gestione della richiesta di metadati, attraverso una GET tramite Postman (vedi [tabella](#tipologia-richieste) - riga 7). 
+![metadata](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/sequence_metadata.png)
 
 ### Programmi utilizzati
 - **Eclipse**, per scrittura codice, documentazione e diagrammi (classi e sequenze);
