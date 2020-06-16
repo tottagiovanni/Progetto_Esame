@@ -24,14 +24,14 @@ import it.progetto.Progetto_Esame.utils.Filter.StringFilter;
 
 /**
  * <p>
- * 	<b>Classe</b> <i>ProgettoEsameApllicationTests</i> per i vari JUnit test
+ * 	<b>Classe</b> <i>ProgettoEsameMethodTests</i> per i vari JUnit test sui metodi implementati
  * </p>
  * @author Saraceno Alberto Zaccaria
  * @author Totta Giovanni
  * @version 1.0
  */
 @SpringBootTest(classes = ProgettoEsameApplication.class)
-public class ProgettoEsameApplicationTests {
+public class ProgettoEsameMethodTests {
 
 	/**
 	 * Indica una lista di record
@@ -116,7 +116,7 @@ public class ProgettoEsameApplicationTests {
 	void testCompare() {
 		assertEquals(true, NumericalFilter.compare(12L, 1L, "$gt"));
 		assertEquals(false, NumericalFilter.compare(12L, 1L, "$lt"));
-		assertEquals(true, StringFilter.compare("Marco", "Marco", "$eq"));
+		assertEquals(true, StringFilter.compare("Marco", "Marco", "$in"));
 	}
 	
 	/**
@@ -148,18 +148,5 @@ public class ProgettoEsameApplicationTests {
 		assertFalse(stats.getStats("Like", RecordService.getTweets()).getMin().equals(null));
 		assertFalse(stats.getStats("Like", fs.getFilterTweets("{\"Like\": {\"$lte\": 10000}}")).getMin().equals(null));
 		assertTrue(stats.getStats("Like", fs.getFilterTweets("{\"$and\": [{\"nation\": \"in\"}, {\"text\": \"univpm\"}]}")).getMin().equals(0L));
-	}
-		
-	/**
-	 * Metodo per testare l'eccezione di tipo errato
-	 * @see it.progetto.Progetto_Esame.exceptions.InvalidTypeException
-	 * @see it.progetto.Progetto_Esame.utils.CheckType#check(Object, Object)
-	 */
-	@Test
-	void testException() {
-		Object record = "stringa";
-		Object value = 123L;
-		InvalidTypeException exception = assertThrows(InvalidTypeException.class, () -> {CheckType.check(record, value);});
-		assertEquals("Tipo di dato da filtare non valido! Inserire campo di tipo: "+record.getClass(), exception.getMessage());
 	}
 }
