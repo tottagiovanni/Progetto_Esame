@@ -51,6 +51,11 @@ I filtri disponibili ("operatore") sono:
 - `"$and"` --> concatenazione di più filtri (`"$in"` per le stringhe, `"$eq"` per i numeri) ;
 - `"$or"` --> concatenazione di più filtri (`"$in"` per le stringhe, `"$eq"` per i numeri).
 
+#### Esempi
+- `GET localhost:8080/tweets?filter={"Like": {"$lte": 20000}}` --> seleziona i tweet con un numero di like minore o uguale a 20000;
+- `GET localhost:8080/tweets?filter={"$and": [{"device": "android"}, {"text": "univpm"}]}` --> seleziona i tweet scritti da un dispositivo *android* **e** con *univpm* nel testo;
+- `GET localhost:8080/stats?field=like&filter={"$or": [{"text": "univpm"},{"device": "android"}]}` --> esegue le statistiche sul campo *like* dei tweet scritti da un dispositivo *android* **o** con *univpm* nel testo;
+
 ## MODELLAZIONE PROGETTO (UML)
 ### Casi d'uso
 ![casouso1](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/usecase1-1.png)
@@ -109,7 +114,7 @@ Diagramma di sequenza per la gestione della **richiesta** di **metadati**, attra
 
 ## Autori
 - *Saraceno Alberto Zaccaria* (implementazione GUI e statistiche)
-- *Totta Giovanni* (implementazione filtri e test)
+- *Totta Giovanni* (implementazione filtri e JUnit test)
 
 
 
