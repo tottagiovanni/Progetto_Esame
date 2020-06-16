@@ -103,12 +103,24 @@ public class ProgettoEsameExceptionTests {
 	/**
 	 * Metodo per testare l'eccezione di parametro field mancante
 	 * @see it.progetto.Progetto_Esame.exceptions.InvalidRequestException
-	 * @see it.progetto.Progetto_Esame.utils.CheckRequest#check(String)
+	 * @see it.progetto.Progetto_Esame.utils.CheckRequest#check(Object)
 	 */
 	@Test
-	void testInvalidRequestException() {
+	void testInvalidRequestException1() {
 		field = "";
 		InvalidRequestException exception = assertThrows(InvalidRequestException.class, () -> {CheckRequest.check(field);});
-		assertEquals("Parametro field richiesto", exception.getMessage());
+		assertEquals("Parametro field mancante!", exception.getMessage());
+	}
+	
+	/**
+	 * Metodo per testare l'eccezione di parametro filter mancante
+	 * @see it.progetto.Progetto_Esame.exceptions.InvalidRequestException
+	 * @see it.progetto.Progetto_Esame.utils.CheckRequest#check(Object)
+	 */
+	@Test
+	void testInvalidRequestException2(){
+		filter = null;
+		InvalidRequestException exception = assertThrows(InvalidRequestException.class, () -> {CheckRequest.check(filter);});
+		assertEquals("Parametro filter mancante!", exception.getMessage());
 	}
 }

@@ -14,11 +14,13 @@ public class CheckRequest {
 	
 	/**
 	 * Metodo che controlla se il parametro passatogli è vuoto e, in caso affermativo, lancia l'eccezione
-	 * @param s parametro da controllare
+	 * @param param parametro da controllare
 	 * @throws InvalidRequestException se il parametro richiesto manca {@link it.progetto.Progetto_Esame.exceptions.InvalidRequestException}
 	 */
-	public static void check(String s) throws InvalidRequestException{
-		if (s.equals(""))
-			throw new InvalidRequestException("Parametro field richiesto");
+	public static void check(Object param) throws InvalidRequestException{
+		if (param == null)
+			throw new InvalidRequestException("Parametro filter mancante!");
+		else if (param.equals(""))
+			throw new InvalidRequestException("Parametro field mancante!");
 	}
 }

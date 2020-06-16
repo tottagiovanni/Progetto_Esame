@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -80,7 +81,7 @@ public class Controller {
 	 * @see it.progetto.Progetto_Esame.service.StatsService#getStats(String, ArrayList)
 	 * @see it.progetto.Progetto_Esame.service.FilterService#getFilterTweets(String)
 	 * @see it.progetto.Progetto_Esame.exceptions.InvalidRequestException
-	 * @see it.progetto.Progetto_Esame.utils.CheckRequest#check(String)
+	 * @see it.progetto.Progetto_Esame.utils.CheckRequest#check(Object)
 	 */
 	@RequestMapping(value = "/stats", method = RequestMethod.GET)
 	public ResponseEntity<Object> getStats(@RequestParam(name = "field", defaultValue = "") String field, @RequestParam(name ="filter", required=false) String filtro){
@@ -99,7 +100,7 @@ public class Controller {
 		}
 		else {
 			StatsTwitter res = stats.getStats(field, filter.getFilterTweets(filtro));
-			if (res.getMin() == null || res.getStandardDeviation() == 0.0)
+			if (res.getMin() == null || (res.getStandardDeviation() == 0.0 && res.getCount() == 0))
 				return new ResponseEntity<>(res.getField(), HttpStatus.BAD_REQUEST);
 			else
 				return new ResponseEntity<>(res, HttpStatus.OK);
@@ -122,9 +123,17 @@ public class Controller {
 	 * @param filtro filtro da applicare alla ricerca
 	 * @return json contenente i tweets ricercati
 	 * @see it.progetto.Progetto_Esame.service.FilterService#getFilterTweets(String)
+	 * @see it.progetto.Progetto_Esame.exceptions.InvalidRequestException
+	 * @see it.progetto.Progetto_Esame.utils.CheckRequest#check(Object)
 	 */
 	@RequestMapping(value = "/tweets", method = RequestMethod.POST)
-	public ResponseEntity<Object> getPostTweets(@RequestBody String filtro){
+	public ResponseEntity<Object> getPostTweets(@RequestBody(required = false) String filtro){
+		try {
+			CheckRequest.check(filtro);
+		}catch(InvalidRequestException e) {
+			return new ResponseEntity<>(e.toString(),HttpStatus.BAD_REQUEST);
+		}
+		
 		ArrayList<RecordTwitter> res = filter.getFilterTweets(filtro);
 		if (!(res.isEmpty()) && (res.get(0).getId_post()) == null)
 			return new ResponseEntity<>(res.get(0).getText(), HttpStatus.BAD_REQUEST);
@@ -140,18 +149,23 @@ public class Controller {
 	 * @see it.progetto.Progetto_Esame.service.StatsService#getStats(String, ArrayList)
 	 * @see it.progetto.Progetto_Esame.service.FilterService#getFilterTweets(String)
 	 * @see it.progetto.Progetto_Esame.exceptions.InvalidRequestException
-	 * @see it.progetto.Progetto_Esame.utils.CheckRequest#check(String)
+	 * @see it.progetto.Progetto_Esame.utils.CheckRequest#check(Object)
 	 */
 	@RequestMapping(value = "/stats", method = RequestMethod.POST)
-	public ResponseEntity<Object> getPostTweets(@RequestParam(name = "field", defaultValue = "") String field, @RequestBody String filtro){
+	public ResponseEntity<Object> getPostTweets(@RequestParam(name = "field", defaultValue = "") String field, @RequestBody(required = false) String filtro){
 		try {
 			CheckRequest.check(field);
+			try {
+				CheckRequest.check(filtro);
+			}catch(InvalidRequestException e) {
+				return new ResponseEntity<>(e.toString(),HttpStatus.BAD_REQUEST);
+			}
 		}catch(InvalidRequestException e) {
 			return new ResponseEntity<>(e.toString(),HttpStatus.BAD_REQUEST);
 		}
 		
 		StatsTwitter res = stats.getStats(field, filter.getFilterTweets(filtro));
-		if (res.getMin() == null || res.getStandardDeviation() == 0.0)
+		if (res.getMin() == null || (res.getStandardDeviation() == 0.0 && res.getCount() == 0))
 			return new ResponseEntity<>(res.getField(), HttpStatus.BAD_REQUEST);
 		else
 			return new ResponseEntity<>(res, HttpStatus.OK);
