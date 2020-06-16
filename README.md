@@ -9,6 +9,9 @@ Su una lista di 50 tweets, [ricercati in base ad una keyword o da file locale](#
 - visualizzare le statistiche filtrate su un campo;
 - visualizzare i metadati.
 
+L'API di Twitter utilizzata è la seguente: 
+"https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q=univpm&count=50&result_type=mixed" (*q*: keyword, *count*: numero tweet, *result type*: tipo di risultati)
+
 Il Data-set è un JSON contenente le informazioni principali per ogni tweet, ad esempio:
 ![JSON](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/json.PNG)
 
@@ -105,8 +108,8 @@ Diagramma di sequenza per la gestione della **richiesta** di **metadati**, attra
 - [ArgoUML](https://en.wikipedia.org/wiki/ArgoUML), per creazione diagrammi dei casi d'uso.
 
 ## Autori
-- *Saraceno Alberto Zaccaria*
-- *Totta Giovanni*
+- *Saraceno Alberto Zaccaria* (implementazione GUI e statistiche)
+- *Totta Giovanni* (implementazione filtri e test)
 
 
 
