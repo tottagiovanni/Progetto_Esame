@@ -51,6 +51,15 @@ I filtri disponibili ("operatore") sono:
 - `"$and"` --> concatenazione di più filtri (`"$in"` per le stringhe, `"$eq"` per i numeri) ;
 - `"$or"` --> concatenazione di più filtri (`"$in"` per le stringhe, `"$eq"` per i numeri).
 
+Le statistiche sono:
+- **avg**: media dei valori del *campo* scelto;
+- **min**: minimo tra i valori del *campo* scelto;
+- **max**: massimo tra i valori del *campo* scelto;
+- **sum**: somma dei valori del *campo* scelto;
+- **count**: numero di tweet analizzati;
+- **mode**: mod dei valori del *campo* scelto;
+- **standardDeviation**: deviazione standard dei valori del *campo* scelto.
+
 #### Esempi
 - `GET localhost:8080/tweets?filter={"Like": {"$lte": 20000}}` --> seleziona i tweet con un numero di like minore o uguale a 20000;
 - `GET localhost:8080/tweets?filter={"$and": [{"device": "android"}, {"text": "univpm"}]}` --> seleziona i tweet scritti da un dispositivo *android* **e** con *univpm* nel testo;
