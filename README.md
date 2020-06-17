@@ -118,7 +118,7 @@ Diagramma di sequenza per la gestione della **richiesta** di **metadati**, attra
 
 ## Programmi utilizzati
 - [Eclipse](https://www.eclipse.org), per scrittura codice, documentazione e diagrammi (classi e sequenze);
-- [Postman](https://www.postman.com) per testare le richieste al server locale;
+- [Postman](https://www.postman.com), per testare le richieste al server locale;
 - [Spring Boot](https://spring.io/projects/spring-boot), framework che consente lo sviluppo di web app scritte in codice Java;
 - [Maven](https://maven.apache.org), strumento per la gestione dei progetti Java;
 - [ArgoUML](https://en.wikipedia.org/wiki/ArgoUML), per creazione diagrammi dei casi d'uso.
