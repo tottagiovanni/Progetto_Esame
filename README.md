@@ -9,6 +9,8 @@ Su una lista di 50 tweets, [ricercati in base ad una keyword o da file locale](#
 - visualizzare le statistiche filtrate su un campo;
 - visualizzare i metadati.
 
+L'applicazione crea un server locale, in ascolto sulla porta 8080, dove si possono inviare [*query-string*](#tipologia-richieste). 
+
 L'API di Twitter utilizzata è la seguente: 
 "https://wd4hfxnxxa.execute-api.us-east-2.amazonaws.com/dev/api/1.1/search/tweets.json?q=univpm&count=50&result_type=mixed" (*q*: keyword, *count*: numero tweet, *result type*: tipo di risultati)
 
@@ -24,11 +26,11 @@ Il Data-set è un JSON contenente le informazioni principali per ogni tweet, ad 
 #### Finestra per dettagli su un tweet
 ![info](https://github.com/tottagiovanni/Progetto_Esame/blob/master/Progetto_Esame/images/InfoWindow.png)
 
-N.B.: per filtrare i dati e per le statistiche specifiche è necessario utilizzare un API client, come [Postman](https://www.postman.com/).
+N.B.: per filtrare i dati e per le statistiche specifiche è necessario utilizzare un API client, come [Postman](#programmi-utilizzati).
 
 ## TIPOLOGIA RICHIESTE
 |METODI|ROTTA   |DESCRIZIONE| 
-| :--- |--------|-----------|
+|------|--------|-----------|
 |GET   |`/tweets` |restituisce tutti i record|
 |GET/POST   |`/tweets?filter={"campo":{"operatore":valore}}` | restituisce i record filtrati|
 |GET/POST   |`/tweets?filter={"$and": [{"campo1": valore1},{"campo2": valore2}]}`|restituisce la concatenazione di record filtrati per AND|
@@ -40,30 +42,30 @@ N.B.: per filtrare i dati e per le statistiche specifiche è necessario utilizza
 *per le richieste in post, il parametro filter è richiesto nel body.*
 
 I filtri disponibili ("operatore") sono:
-- `"$eq"` --> _**valore campo**_ uguale a _**valore**_;
-- `"$!eq"` --> _**valore campo**_ diverso da _**valore**_;
-- `"$in"` --> _**valore**_ presente in _**valore campo**_;
-- `"$!in"` --> _**valore**_ non presente in _**valore campo**_;
-- `"$gte"` --> _**valore campo**_ maggiore (o uguale) di _**valore**_;
-- `"$gt"` --> _**valore campo**_ maggiore di _**valore**_;
-- `"$lt"` --> _**valore campo**_ minore di _**valore**_;
-- `"$lte"` --> _**valore campo**_ minore (o uguale) di _**valore**_;
-- `"$and"` --> concatenazione di più filtri (`"$in"` per le stringhe, `"$eq"` per i numeri) ;
-- `"$or"` --> concatenazione di più filtri (`"$in"` per le stringhe, `"$eq"` per i numeri).
+- `"$eq"` &rarr; _**valore campo**_ uguale a _**valore**_;
+- `"$!eq"` &rarr; _**valore campo**_ diverso da _**valore**_;
+- `"$in"` &rarr; _**valore**_ presente in _**valore campo**_;
+- `"$!in"` &rarr; _**valore**_ non presente in _**valore campo**_;
+- `"$gte"` &rarr; _**valore campo**_ maggiore (o uguale) di _**valore**_;
+- `"$gt"` &rarr; _**valore campo**_ maggiore di _**valore**_;
+- `"$lt"` &rarr; _**valore campo**_ minore di _**valore**_;
+- `"$lte"` &rarr; _**valore campo**_ minore (o uguale) di _**valore**_;
+- `"$and"` &rarr; concatenazione di più filtri (`"$in"` per le stringhe, `"$eq"` per i numeri) ;
+- `"$or"` &rarr; concatenazione di più filtri (`"$in"` per le stringhe, `"$eq"` per i numeri).
 
 Le statistiche sono:
-- **avg**: media dei valori del *campo* scelto;
+- **average**: media dei valori del *campo* scelto;
 - **min**: minimo tra i valori del *campo* scelto;
 - **max**: massimo tra i valori del *campo* scelto;
 - **sum**: somma dei valori del *campo* scelto;
 - **count**: numero di tweet analizzati;
-- **mode**: mod dei valori del *campo* scelto;
+- **mode**: moda dei valori del *campo* scelto;
 - **standardDeviation**: deviazione standard dei valori del *campo* scelto.
 
 #### Esempi
-- `GET localhost:8080/tweets?filter={"Like": {"$lte": 20000}}` --> seleziona i tweet con un numero di like minore o uguale a 20000;
-- `GET localhost:8080/tweets?filter={"$and": [{"device": "android"}, {"text": "univpm"}]}` --> seleziona i tweet scritti da un dispositivo *android* **e** con *univpm* nel testo;
-- `GET localhost:8080/stats?field=like&filter={"$or": [{"text": "univpm"},{"device": "android"}]}` --> esegue le statistiche sul campo *like* dei tweet scritti da un dispositivo *android* **o** con *univpm* nel testo;
+- `GET localhost:8080/tweets?filter={"Like": {"$lte": 20000}}` &rarr; seleziona i tweet con un numero di like minore o uguale a 20000;
+- `GET localhost:8080/tweets?filter={"$and": [{"device": "android"}, {"text": "univpm"}]}` &rarr; seleziona i tweet scritti da un dispositivo *android* **e** con *univpm* nel testo;
+- `GET localhost:8080/stats?field=like&filter={"$or": [{"text": "univpm"},{"device": "android"}]}` &rarr; esegue le statistiche sul campo *like* dei tweet scritti da un dispositivo *android* **o** con *univpm* nel testo;
 
 ## MODELLAZIONE PROGETTO (UML)
 ### Casi d'uso
@@ -122,8 +124,8 @@ Diagramma di sequenza per la gestione della **richiesta** di **metadati**, attra
 - [ArgoUML](https://en.wikipedia.org/wiki/ArgoUML), per creazione diagrammi dei casi d'uso.
 
 ## Autori
-- *Saraceno Alberto Zaccaria* (implementazione GUI e statistiche)
-- *Totta Giovanni* (implementazione filtri e JUnit test)
+- *Saraceno Alberto Zaccaria* (implementazione controller, filtri, statistiche, GUI)
+- *Totta Giovanni* (implementazione controller, filtri, JUnit test, eccezioni, JavaDoc)
 
 
 
