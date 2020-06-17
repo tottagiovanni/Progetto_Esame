@@ -124,8 +124,9 @@ Diagramma di sequenza per la gestione della **richiesta** di **metadati**, attra
 - [ArgoUML](https://en.wikipedia.org/wiki/ArgoUML), per creazione diagrammi dei casi d'uso.
 
 ## Autori
-- *Saraceno Alberto Zaccaria* (implementazione controller, filtri, statistiche, GUI)
-- *Totta Giovanni* (implementazione controller, filtri, JUnit test, eccezioni, JavaDoc)
+*Saraceno Alberto Zaccaria* (implementazione controller, filtri, statistiche, GUI).
+
+*Totta Giovanni* (implementazione controller, filtri, JUnit test, eccezioni, JavaDoc).
 
 
 
