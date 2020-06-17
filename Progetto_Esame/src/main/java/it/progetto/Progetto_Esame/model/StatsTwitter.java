@@ -40,7 +40,7 @@ public class StatsTwitter {
 	/**
 	 * Indica la moda dei valori
 	 */
-	private Long moda;
+	private Long mode;
 	
 	/**
 	 * Costruttore che inizializza l'attributo field della classe
@@ -60,9 +60,9 @@ public class StatsTwitter {
 	 * @param sum somma dei valori
 	 * @param count numero di tweets
 	 * @param standardDeviation deviazione standard dei valori
-	 * @param moda moda dei valori
+	 * @param mode moda dei valori
 	 */
-	public StatsTwitter(String field, Long average, Long min, Long max, Long sum, Long count, double standardDeviation, Long moda) {
+	public StatsTwitter(String field, Long average, Long min, Long max, Long sum, Long count, double standardDeviation, Long mode) {
 		super();
 		this.field = field;
 		this.average = average;
@@ -71,7 +71,7 @@ public class StatsTwitter {
 		this.sum = sum;
 		this.count = count;
 		this.standardDeviation = standardDeviation;
-		this.moda = moda;
+		this.mode = mode;
 	}
 	
 	/**
@@ -187,18 +187,18 @@ public class StatsTwitter {
 	}
 	
 	/**
-	 * Metodo get per l'attributo moda
-	 * @return attributo moda di tipo <code>Long</code> 
+	 * Metodo get per l'attributo mode
+	 * @return attributo mode di tipo <code>Long</code> 
 	 */
-	public Long getModa() {
-		return moda;
+	public Long getMode() {
+		return mode;
 	}
 
 	/**
-	 * Metodo set per l'attributo moda
-	 * @param moda moda dei valori
+	 * Metodo set per l'attributo mode
+	 * @param mode moda dei valori
 	 */
-	public void setModa(Long moda) {
-		this.moda = moda;
+	public void setMode(Long mode) {
+		this.mode = mode;
 	}
 }
